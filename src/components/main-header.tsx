@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/layout/container";
 
 type NavItem = {
@@ -63,6 +66,20 @@ const NAV_SECTIONS: NavSection[] = [
 ];
 
 export function MainHeader() {
+  const pathname = usePathname();
+
+  const isSectionActive = (section: NavSection) =>
+    pathname === section.href || pathname.startsWith(`${section.href}/`);
+
+  const isItemActive = (item: NavItem) => pathname === item.href;
+
+  const handleMobileNavClick = () => {
+    const details = document.getElementById(
+      "main-nav-mobile"
+    ) as HTMLDetailsElement | null;
+    if (details) details.open = false;
+  };
+
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-md supports-backdrop-filter:bg-white/60">
       <Container>
@@ -87,7 +104,11 @@ export function MainHeader() {
                 >
                   <Link
                     href={section.href}
-                    className="transition-colors hover:text-neutral-900"
+                    className={`px-2 py-1 transition-colors ${
+                      isSectionActive(section)
+                        ? "bg-neutral-900 text-white"
+                        : "hover:text-neutral-900"
+                    }`}
                   >
                     {section.label}
                   </Link>
@@ -97,7 +118,9 @@ export function MainHeader() {
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="px-3 py-1.5 text-left hover:bg-neutral-50 hover:text-neutral-900"
+                          className={`px-3 py-1.5 text-left hover:bg-neutral-50 hover:text-neutral-900 ${
+                            isItemActive(item) ? "bg-neutral-100" : ""
+                          }`}
                         >
                           {item.label}
                         </Link>
@@ -109,7 +132,10 @@ export function MainHeader() {
             </div>
 
             {/* Mobile hamburger */}
-            <details className="relative flex h-full items-center md:hidden">
+            <details
+              id="main-nav-mobile"
+              className="relative flex h-full items-center md:hidden"
+            >
               <summary className="flex h-8 w-8 cursor-pointer list-none flex-col items-center justify-center gap-1 border border-neutral-300 bg-white text-neutral-700">
                 <span className="h-px w-4 bg-neutral-800" />
                 <span className="h-px w-4 bg-neutral-800" />
@@ -123,7 +149,12 @@ export function MainHeader() {
                   >
                     <Link
                       href={section.href}
-                      className="block px-4 pt-2 text-[11px] font-semibold tracking-wide text-neutral-900"
+                      onClick={handleMobileNavClick}
+                      className={`block px-4 pt-2 text-[11px] font-semibold tracking-wide ${
+                        isSectionActive(section)
+                          ? "bg-neutral-900 text-white"
+                          : "text-neutral-900"
+                      }`}
                     >
                       {section.label}
                     </Link>
@@ -132,7 +163,10 @@ export function MainHeader() {
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="block px-6 py-1 text-[11px] text-neutral-600 hover:text-neutral-900"
+                          onClick={handleMobileNavClick}
+                          className={`block px-6 py-1 text-[11px] text-neutral-600 hover:text-neutral-900 ${
+                            isItemActive(item) ? "bg-neutral-100" : ""
+                          }`}
                         >
                           {item.label}
                         </Link>
