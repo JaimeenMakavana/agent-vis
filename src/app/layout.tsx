@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-(--brand-surface) text-neutral-700`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-(--brand-surface) text-neutral-700 h-dvh`}
       >
         {/* Aura / background treatment */}
         <div
@@ -55,4 +55,3 @@ export default function RootLayout({
     </html>
   );
 }
-

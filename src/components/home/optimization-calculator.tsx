@@ -1,23 +1,23 @@
-type OptimizationCalculatorProps = {
-  monthlyTokens: number;
-  hallucinationRate: number;
-  wastedSpend: number;
-  agentVisSavings: number;
-  onMonthlyTokensChange: (value: number) => void;
-  onHallucinationRateChange: (value: number) => void;
-  formatCurrency: (value: number) => string;
-};
+"use client";
+import { useEffect, useState } from "react";
 
-export function OptimizationCalculator(props: OptimizationCalculatorProps) {
-  const {
-    monthlyTokens,
-    hallucinationRate,
-    wastedSpend,
-    agentVisSavings,
-    onMonthlyTokensChange,
-    onHallucinationRateChange,
-    formatCurrency,
-  } = props;
+export function OptimizationCalculator() {
+  const [monthlyTokens, setMonthlyTokens] = useState(50);
+  const [hallucinationRate, setHallucinationRate] = useState(15);
+  const [wastedSpend, setWastedSpend] = useState(0);
+  const [agentVisSavings, setAgentVisSavings] = useState(0);
+
+  useEffect(() => {
+    const TOKEN_PRICE_PER_M = 30;
+    const totalCost = monthlyTokens * TOKEN_PRICE_PER_M;
+    const wasted = Math.floor(totalCost * (hallucinationRate / 100));
+    const savings = Math.floor(wasted * 0.85);
+    setWastedSpend(wasted);
+    setAgentVisSavings(savings);
+  }, [monthlyTokens, hallucinationRate]);
+
+  const formatCurrency = (num: number) =>
+    num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <section
@@ -56,7 +56,7 @@ export function OptimizationCalculator(props: OptimizationCalculatorProps) {
                     step={10}
                     value={monthlyTokens}
                     onChange={(e) =>
-                      onMonthlyTokensChange(parseInt(e.target.value, 10))
+                      setMonthlyTokens(parseInt(e.target.value, 10))
                     }
                     className="w-full"
                   />
@@ -81,7 +81,7 @@ export function OptimizationCalculator(props: OptimizationCalculatorProps) {
                     step={1}
                     value={hallucinationRate}
                     onChange={(e) =>
-                      onHallucinationRateChange(parseInt(e.target.value, 10))
+                      setHallucinationRate(parseInt(e.target.value, 10))
                     }
                     className="w-full"
                   />
@@ -128,5 +128,3 @@ export function OptimizationCalculator(props: OptimizationCalculatorProps) {
     </section>
   );
 }
-
-

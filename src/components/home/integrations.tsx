@@ -1,15 +1,24 @@
+import { Container } from "@/components/layout/container";
+import { SectionHeader } from "@/components/ui/section-header";
+
+type IntegrationCardProps = {
+  badge: string;
+  title: string;
+  icon: string;
+  description: string;
+  bullets: string[];
+};
+
 export function Integrations() {
   return (
     <section id="solutions" className="relative z-10 bg-white py-16 sm:py-24">
-      <div className="mr-auto ml-auto max-w-5xl px-4 sm:px-6">
-        <div className="mb-12 text-center sm:mb-16">
-          <h2 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-(--brand-blue)">
-            Integrations
-          </h2>
-          <h3 className="text-2xl font-medium tracking-tighter text-neutral-900 sm:text-3xl">
-            Works where you build.
-          </h3>
-        </div>
+      <Container size="md">
+        <SectionHeader
+          eyebrow="Integrations"
+          title="Works where you build."
+          align="center"
+          className="mb-12 sm:mb-16"
+        />
 
         <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
           <IntegrationCard
@@ -27,18 +36,10 @@ export function Integrations() {
             bullets={["One-Click Setup", "Real-time WebSocket Stream"]}
           />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
-
-type IntegrationCardProps = {
-  badge: string;
-  title: string;
-  icon: string;
-  description: string;
-  bullets: string[];
-};
 
 function IntegrationCard({
   badge,
@@ -48,7 +49,7 @@ function IntegrationCard({
   bullets,
 }: IntegrationCardProps) {
   return (
-    <div className="group relative h-full rounded-sm bg-linear-to-b from-neutral-200 via-neutral-200 to-neutral-300 p-px transition-all duration-300 hover:from-neutral-300 hover:via-neutral-400 hover:to-neutral-500">
+    <div className="group relative h-full rounded-sm bg-linear-to-b from-neutral-200 via-neutral-200 to-neutral-300 p-px transition-all.duration-300 hover:from-neutral-300 hover:via-neutral-400 hover:to-neutral-500">
       <div className="relative z-10 flex h-full flex-col rounded-[1px] bg-neutral-50 p-6 sm:p-8">
         <div className="mb-4 flex items-start justify-between sm:mb-6">
           <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-neutral-200 bg-white text-(--brand-blue) shadow-sm">
@@ -79,5 +80,6 @@ function IntegrationCard({
     </div>
   );
 }
+
 
 

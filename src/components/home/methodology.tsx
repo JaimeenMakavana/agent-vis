@@ -1,3 +1,6 @@
+import { Container } from "@/components/layout/container";
+import { SectionHeader } from "@/components/ui/section-header";
+
 export function Methodology() {
   const items = [
     {
@@ -19,17 +22,12 @@ export function Methodology() {
 
   return (
     <section id="process" className="relative z-10 bg-white py-16 sm:py-24">
-      <div className="mr-auto ml-auto max-w-6xl px-4 sm:px-6">
+      <Container>
         <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
-          <div>
-            <h2 className="mb-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-(--brand-blue)">
-              <span className="h-1 w-1 rounded-full bg-(--brand-blue)" />
-              Our Methodology
-            </h2>
-            <h3 className="text-2xl font-medium tracking-tighter text-neutral-900 sm:text-2xl">
-              Trace. Replay. Resolve.
-            </h3>
-          </div>
+          <SectionHeader
+            eyebrow="Our Methodology"
+            title="Trace. Replay. Resolve."
+          />
           <p className="max-w-md text-xs font-light text-neutral-500 sm:text-xs">
             AgentVis hooks directly into your LLM chain execution, providing a
             visual timeline of every thought, action, and observation.
@@ -54,9 +52,7 @@ export function Methodology() {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
-
-
