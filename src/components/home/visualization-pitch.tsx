@@ -1,28 +1,35 @@
 import { Container } from "@/components/layout/container";
 import { SectionHeader } from "@/components/ui/section-header";
 import { H3, Body, BodySmall } from "@/components/ui/typography";
+import { Search, DollarSign, RefreshCw, Users } from "lucide-react";
 
-const PROBLEMS = [
+type Problem = {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+};
+
+const PROBLEMS: Problem[] = [
   {
-    icon: "🔍",
+    icon: Search,
     title: "The Black Box Problem",
     description:
       "Agentic systems make decisions through complex reasoning chains, but you can't see inside. When an agent fails or produces unexpected results, you're left guessing what went wrong.",
   },
   {
-    icon: "💰",
+    icon: DollarSign,
     title: "Hidden Cost Drivers",
     description:
       "Token consumption explodes silently. Without visibility into which agents, tools, or prompts consume the most tokens, optimization is impossible. Your OpenAI bill becomes unpredictable.",
   },
   {
-    icon: "🔄",
+    icon: RefreshCw,
     title: "Debugging Nightmare",
     description:
       "Reproducing failures requires replaying entire agent workflows. There's no way to inspect intermediate states, fork execution paths, or understand why one prompt succeeded while another failed.",
   },
   {
-    icon: "🤝",
+    icon: Users,
     title: "Collaboration Blind Spots",
     description:
       "Multi-agent systems involve complex orchestration. Without visual representation of agent interactions, message flows, and decision trees, teams can't align on system behavior.",
@@ -64,7 +71,7 @@ export function VisualizationPitch() {
   return (
     <>
       {/* Problem Section */}
-      <section className="relative bg-[var(--brand-surface-soft)] py-16 sm:py-24">
+      <section className="relative  py-16 sm:py-24">
         <Container>
           <div className="mb-12 sm:mb-16">
             <SectionHeader
@@ -81,23 +88,28 @@ export function VisualizationPitch() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {PROBLEMS.map((problem, index) => (
-              <div
-                key={problem.title}
-                className="group relative border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-6 transition-all duration-300 hover:border-[var(--brand-border-strong)] hover:shadow-sm sm:p-8"
-              >
-                <div className="mb-4 text-3xl">{problem.icon}</div>
-                <H3 className="mb-3">{problem.title}</H3>
-                <Body>{problem.description}</Body>
-                <div className="absolute -right-[1px] -top-[1px] h-2 w-2 bg-[var(--brand-border-subtle)] transition-colors group-hover:bg-[var(--brand-border-strong)]" />
-              </div>
-            ))}
+            {PROBLEMS.map((problem, index) => {
+              const IconComponent = problem.icon;
+              return (
+                <div
+                  key={problem.title}
+                  className="group relative border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-6 transition-all duration-300 hover:border-[var(--brand-border-strong)] hover:shadow-sm sm:p-8"
+                >
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md border border-[var(--brand-border-subtle)] bg-[var(--brand-surface)]">
+                    <IconComponent className="h-6 w-6 text-[var(--brand-blue-soft)]" />
+                  </div>
+                  <H3 className="mb-3">{problem.title}</H3>
+                  <Body>{problem.description}</Body>
+                  <div className="absolute -right-[1px] -top-[1px] h-2 w-2 bg-[var(--brand-border-subtle)] transition-colors group-hover:bg-[var(--brand-border-strong)]" />
+                </div>
+              );
+            })}
           </div>
         </Container>
       </section>
 
       {/* Solution Section */}
-      <section className="relative bg-[var(--brand-surface-soft)] py-16 sm:py-24">
+      <section className="relative  py-16 sm:py-24">
         <Container>
           <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
             <SectionHeader

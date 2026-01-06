@@ -1,20 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0f14;
-  --foreground: #e5e7eb;
+  --background: #070707;
+  --foreground: #e8e8e8;
 
-  --brand-surface: #111827;
-  --brand-surface-soft: #1f2933;
-  --brand-grid-line: #1f2937;
-  --brand-border-subtle: #374151;
-  --brand-border-strong: #4b5563;
-  --brand-muted: #9ca3af;
+  --brand-surface: #0c0c0c;
+  --brand-surface-soft: #121212;
+  --brand-grid-line: #1b1b1b;
+  --brand-border-subtle: #262626;
+  --brand-border-strong: #333333;
+  --brand-muted: #8a8a8a;
 
-  --brand-blue: #3b82f6;
-  --brand-blue-soft: #60a5fa;
-  --brand-accent: #e5e7eb;
-
+  --brand-blue: #628141;
+  --brand-blue-soft: #8faa6a;
+  --brand-accent: #e8e8e8;
   /* Light theme colors for traceability pages */
   --light-background: #ffffff;
   --light-surface: #ffffff;
