@@ -119,6 +119,39 @@ input[type="range"]:focus {
   outline: none;
 }
 
+/* Custom scrollbar styling - token-driven, theme-aware */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-border-subtle) var(--brand-surface);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--brand-surface);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--brand-border-subtle);
+  border-radius: 9999px;
+  border: 2px solid var(--brand-surface);
+  transition: background-color 0.15s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-border-strong);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: var(--brand-muted);
+}
+
 /* Scroll marquee */
 @keyframes scroll {
   0% {

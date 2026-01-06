@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-(--brand-surface) text-neutral-700 h-dvh`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-(--brand-surface) text-neutral-700 min-h-dvh pt-[64px] flex flex-col`}
       >
         {/* Aura / background treatment */}
         <div
@@ -45,11 +45,8 @@ export default function RootLayout({
           className="bg-grid-pattern pointer-events-none fixed inset-0 z-0 opacity-40"
           aria-hidden="true"
         />
-
         <MainHeader />
-
-        <main className="relative z-10">{children}</main>
-
+        <main className="relative z-10 flex-1">{children}</main>
         <MainFooter />
       </body>
     </html>
