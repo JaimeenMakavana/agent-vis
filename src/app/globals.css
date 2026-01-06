@@ -33,8 +33,11 @@ body {
 /* Custom grid background for the landing page */
 .bg-grid-pattern {
   background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, var(--brand-grid-line) 1px, transparent 1px),
+  background-image: linear-gradient(
+      to right,
+      var(--brand-grid-line) 1px,
+      transparent 1px
+    ),
     linear-gradient(to bottom, var(--brand-grid-line) 1px, transparent 1px);
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
   -webkit-mask-image: radial-gradient(
@@ -63,11 +66,8 @@ body {
 .input-base:focus {
   outline: none;
   border-color: var(--brand-blue-soft);
-  box-shadow: 0 0 0 1px color-mix(
-      in srgb,
-      var(--brand-blue-soft) 15%,
-      transparent
-    );
+  box-shadow: 0 0 0 1px
+    color-mix(in srgb, var(--brand-blue-soft) 15%, transparent);
 }
 
 .input-base::placeholder {
