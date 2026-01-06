@@ -1,38 +1,31 @@
 "use client";
-import { useEffect, useState } from "react";
+import { H2, Body, BodySmall } from "@/components/ui/typography";
+import { Container } from "@/components/layout/container";
+import { useOptimizationCalculator } from "@/hooks/useOptimizationCalculator";
 
 export function OptimizationCalculator() {
-  const [monthlyTokens, setMonthlyTokens] = useState(50);
-  const [hallucinationRate, setHallucinationRate] = useState(15);
-  const [wastedSpend, setWastedSpend] = useState(0);
-  const [agentVisSavings, setAgentVisSavings] = useState(0);
-
-  useEffect(() => {
-    const TOKEN_PRICE_PER_M = 30;
-    const totalCost = monthlyTokens * TOKEN_PRICE_PER_M;
-    const wasted = Math.floor(totalCost * (hallucinationRate / 100));
-    const savings = Math.floor(wasted * 0.85);
-    setWastedSpend(wasted);
-    setAgentVisSavings(savings);
-  }, [monthlyTokens, hallucinationRate]);
-
-  const formatCurrency = (num: number) =>
-    num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const {
+    monthlyTokens,
+    hallucinationRate,
+    wastedSpend,
+    agentVisSavings,
+    setMonthlyTokens,
+    setHallucinationRate,
+    formatCurrency,
+  } = useOptimizationCalculator();
 
   return (
     <section
       id="calculator"
       className="relative z-10 border-b border-neutral-200 bg-neutral-50 py-16 sm:py-24"
     >
-      <div className="mr-auto ml-auto max-w-4xl px-4 sm:px-6">
+      <Container size="md">
         <div className="mb-10 text-center">
-          <h2 className="mb-4 flex items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-widest text-(--brand-blue)">
+          <p className="mb-2 flex items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-widest text-(--brand-blue)">
             <span className="h-1 w-1 rounded-full bg-(--brand-blue)" />
             Optimization Calculator
-          </h2>
-          <h3 className="text-2xl font-medium tracking-tighter text-neutral-900 sm:text-3xl">
-            How much are zombie agents costing you?
-          </h3>
+          </p>
+          <H2>How much are zombie agents costing you?</H2>
         </div>
 
         <div className="rounded-sm bg-linear-to-b from-neutral-200 to-neutral-300 p-px shadow-sm">
@@ -111,20 +104,20 @@ export function OptimizationCalculator() {
                 <div className="mb-2 text-4xl font-semibold tracking-tighter text-neutral-900">
                   ${formatCurrency(agentVisSavings)}
                 </div>
-                <p className="text-xs font-light leading-relaxed text-neutral-500">
+                <Body className="text-xs">
                   Recover up to{" "}
                   <span className="font-medium text-(--brand-blue)">85%</span>{" "}
                   of wasted compute by detecting loops and optimizing context
                   windows early.
-                </p>
+                </Body>
               </div>
             </div>
           </div>
         </div>
-        <p className="mt-4 text-center text-[10px] text-neutral-400">
+        <BodySmall className="mt-4 text-center text-[10px] text-neutral-400">
           Estimates based on average GPT-4o input/output pricing models.
-        </p>
-      </div>
+        </BodySmall>
+      </Container>
     </section>
   );
 }

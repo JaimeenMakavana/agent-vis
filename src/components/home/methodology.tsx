@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout/container";
 import { SectionHeader } from "@/components/ui/section-header";
+import { H3, BodySmall } from "@/components/ui/typography";
 
 export function Methodology() {
   const items = [
@@ -28,10 +29,10 @@ export function Methodology() {
             eyebrow="Our Methodology"
             title="Trace. Replay. Resolve."
           />
-          <p className="max-w-md text-xs font-light text-neutral-500 sm:text-xs">
+          <BodySmall className="max-w-md">
             AgentVis hooks directly into your LLM chain execution, providing a
             visual timeline of every thought, action, and observation.
-          </p>
+          </BodySmall>
         </div>
 
         <div className="grid grid-cols-1 gap-px border border-neutral-200 bg-neutral-200 md:grid-cols-3">
@@ -43,12 +44,8 @@ export function Methodology() {
               <div className="mb-4 inline-block rounded-sm border border-neutral-200 bg-neutral-50 pt-1 pb-1 pr-2 pl-2 font-mono text-xs text-neutral-500 sm:mb-6">
                 {item.label}
               </div>
-              <h4 className="mb-3 text-base font-medium tracking-tight text-neutral-900 sm:text-lg">
-                {item.title}
-              </h4>
-              <p className="text-xs font-light leading-relaxed text-neutral-500">
-                {item.body}
-              </p>
+              <H3 className="mb-3">{item.title}</H3>
+              <BodySmall>{item.body}</BodySmall>
             </div>
           ))}
         </div>

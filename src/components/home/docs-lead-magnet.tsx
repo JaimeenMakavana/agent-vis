@@ -1,19 +1,11 @@
 "use client";
-import { useState } from "react";
 import { Container } from "@/components/layout/container";
 import { PrimaryCtaFrame } from "@/components/ui/primary-cta-frame";
+import { H2, Body, BodySmall } from "@/components/ui/typography";
+import { useLeadMagnetStatus } from "@/hooks/useLeadMagnetStatus";
 
 export function DocsLeadMagnet() {
-  const [status, setStatus] = useState<string | null>(null);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setStatus("Generating...");
-    setTimeout(() => {
-      setStatus("✓ Keys sent to email");
-      setTimeout(() => setStatus(null), 2500);
-    }, 1000);
-  };
+  const { status, handleSubmit } = useLeadMagnetStatus();
   return (
     <section
       id="audit"
@@ -29,14 +21,12 @@ export function DocsLeadMagnet() {
                     Developer Docs
                   </span>
                 </div>
-                <h2 className="mb-4 text-2xl font-medium tracking-tight text-neutral-900 sm:text-3xl">
-                  Quickstart with 2 lines of code
-                </h2>
-                <p className="mb-6 text-xs font-light leading-relaxed text-neutral-500 sm:text-sm">
+                <H2 className="mb-4">Quickstart with 2 lines of code</H2>
+                <Body className="mb-6">
                   Integrate AgentVis SDK into your Python or TypeScript project
                   in minutes. Compatible with LangChain, AutoGen, and custom
                   loops.
-                </p>
+                </Body>
                 <div className="mb-6 rounded-sm border border-neutral-800 bg-neutral-900 p-4 font-mono text-xs text-neutral-300">
                   <span className="text-(--brand-blue)">npm</span> install
                   @agentvis/sdk
@@ -88,9 +78,9 @@ export function DocsLeadMagnet() {
                       {status ?? "GET API KEYS"}
                     </button>
                   </PrimaryCtaFrame>
-                  <p className="text-center text-[10px] text-neutral-400">
+                  <BodySmall className="text-center text-[10px] text-neutral-400">
                     Free up to 10k traces/mo.
-                  </p>
+                  </BodySmall>
                 </form>
               </div>
             </div>

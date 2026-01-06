@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Container } from "@/components/layout/container";
 
 type NavItem = {
   label: string;
@@ -64,7 +65,7 @@ const NAV_SECTIONS: NavSection[] = [
 export function MainHeader() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-md supports-backdrop-filter:bg-white/60">
-      <div className="mr-auto ml-auto max-w-6xl px-4 sm:px-6">
+      <Container>
         {/* Header row */}
         <div className="flex h-14 items-stretch justify-between">
           <div className="flex h-full items-center gap-3">
@@ -141,7 +142,7 @@ export function MainHeader() {
             </details>
           </div>
         </div>
-      </div>
+      </Container>
     </nav>
   );
 }

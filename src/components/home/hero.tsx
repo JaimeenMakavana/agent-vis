@@ -2,6 +2,25 @@ import { Container } from "@/components/layout/container";
 import { PrimaryCtaFrame } from "@/components/ui/primary-cta-frame";
 import { H1, Body } from "@/components/ui/typography";
 
+const HERO_STATS = [
+  {
+    value: "1B+",
+    label: "Tokens Analyzed",
+  },
+  {
+    value: "< 10ms",
+    label: "Tracing Latency",
+  },
+  {
+    value: "LangChain",
+    label: "Native Support",
+  },
+  {
+    value: "Self-Host",
+    label: "Or Cloud Managed",
+  },
+];
+
 export function Hero() {
   return (
     <section className="pb-12 pt-24 sm:pb-24 sm:pt-32">
@@ -65,38 +84,27 @@ export function Hero() {
 
       {/* Stats grid */}
       <div className="relative z-30 mt-8 grid grid-cols-2 border-y border-neutral-200 bg-white/60 backdrop-blur-sm animate-in animate-in-delay-3 sm:mt-16 md:grid-cols-4">
-        <div className="border-r border-neutral-200 p-4 text-center sm:p-8">
-          <div className="mb-1 text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
-            1B+
-          </div>
-          <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
-            Tokens Analyzed
-          </div>
-        </div>
-        <div className="border-neutral-200 p-4 text-center sm:p-8 md:border-r">
-          <div className="mb-1 text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
-            &lt; 10ms
-          </div>
-          <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
-            Tracing Latency
-          </div>
-        </div>
-        <div className="border-t border-r border-neutral-200 p-4 text-center sm:p-8 md:border-t-0">
-          <div className="mb-1 text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
-            LangChain
-          </div>
-          <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
-            Native Support
-          </div>
-        </div>
-        <div className="border-t border-neutral-200 p-4 text-center sm:p-8 md:border-t-0">
-          <div className="mb-1 text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
-            Self-Host
-          </div>
-          <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
-            Or Cloud Managed
-          </div>
-        </div>
+        {HERO_STATS.map((stat, index) => {
+          const isFirstRow = index < 2;
+          const isFirstCol = index % 2 === 0;
+          const borderTop = isFirstRow ? "" : "border-t md:border-t-0";
+          const borderRight =
+            isFirstCol || index < 2 ? "border-r border-neutral-200" : "";
+
+          return (
+            <div
+              key={stat.label}
+              className={`${borderTop} ${borderRight} border-neutral-200 p-4 text-center sm:p-8`}
+            >
+              <div className="mb-1 text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
+                {stat.value}
+              </div>
+              <div className="font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
+                {stat.label}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

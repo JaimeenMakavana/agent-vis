@@ -9,9 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "frappe-gantt": "^1.0.4",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-frappe-gantt": "^0.2.3",
+    "reactflow": "^11.11.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

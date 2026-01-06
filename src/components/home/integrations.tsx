@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout/container";
 import { SectionHeader } from "@/components/ui/section-header";
+import { H3, BodySmall } from "@/components/ui/typography";
 
 type IntegrationCardProps = {
   badge: string;
@@ -59,12 +60,8 @@ function IntegrationCard({
             {badge}
           </span>
         </div>
-        <h3 className="mb-2 text-base font-medium tracking-tight text-neutral-900 sm:text-lg">
-          {title}
-        </h3>
-        <p className="mb-6 text-xs font-light leading-relaxed text-neutral-500">
-          {description}
-        </p>
+        <H3 className="mb-2">{title}</H3>
+        <BodySmall className="mb-6">{description}</BodySmall>
         <ul className="mt-auto border-t border-neutral-200 pt-4 sm:pt-6">
           {bullets.map((bullet) => (
             <li
@@ -80,6 +77,3 @@ function IntegrationCard({
     </div>
   );
 }
-
-
-
