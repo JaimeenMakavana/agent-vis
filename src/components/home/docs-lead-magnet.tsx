@@ -9,15 +9,15 @@ export function DocsLeadMagnet() {
   return (
     <section
       id="audit"
-      className="relative z-10 border-b border-neutral-200 bg-neutral-50 py-16 sm:py-24"
+      className="relative z-10 border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] py-16 sm:py-24"
     >
       <Container size="md">
-        <div className="rounded-sm bg-linear-to-b from-neutral-200 to-neutral-300 p-px shadow-sm">
-          <div className="rounded-[1px] bg-white p-6 sm:p-8 md:p-12">
+        <div className="rounded-sm bg-linear-to-b from-[var(--brand-border-subtle)] to-[var(--brand-border-strong)] p-px shadow-sm">
+          <div className="rounded-[1px] bg-[var(--brand-surface-soft)] p-6 sm:p-8 md:p-12">
             <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
               <div className="flex-1">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-blue-100 bg-blue-50 px-2 py-1 sm:mb-6">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-(--brand-blue)">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[var(--brand-blue-soft)]/30 bg-[var(--brand-blue-soft)]/10 px-2 py-1 sm:mb-6">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--brand-blue)]">
                     Developer Docs
                   </span>
                 </div>
@@ -27,20 +27,22 @@ export function DocsLeadMagnet() {
                   in minutes. Compatible with LangChain, AutoGen, and custom
                   loops.
                 </Body>
-                <div className="mb-6 rounded-sm border border-neutral-800 bg-neutral-900 p-4 font-mono text-xs text-neutral-300">
-                  <span className="text-(--brand-blue)">npm</span> install
+                <div className="mb-6 rounded-sm border border-[var(--brand-border-strong)] bg-[var(--background)] p-4 font-mono text-xs text-[var(--brand-muted)]">
+                  <span className="text-[var(--brand-blue)]">npm</span> install
                   @agentvis/sdk
                   <br />
-                  <span className="text-neutral-500"># Or for Python</span>
+                  <span className="text-[var(--brand-border-strong)]">
+                    # Or for Python
+                  </span>
                   <br />
-                  <span className="text-(--brand-blue)">pip</span> install
+                  <span className="text-[var(--brand-blue)]">pip</span> install
                   agentvis
                 </div>
                 <ul className="mb-6 space-y-2 sm:mb-8">
-                  <li className="flex items-center gap-3 text-xs text-neutral-600">
+                  <li className="flex items-center gap-3 text-xs text-[var(--brand-border-strong)]">
                     Automatic trace capture
                   </li>
-                  <li className="flex items-center gap-3 text-xs text-neutral-600">
+                  <li className="flex items-center gap-3 text-xs text-[var(--brand-border-strong)]">
                     Secure PII redaction
                   </li>
                 </ul>
@@ -49,36 +51,36 @@ export function DocsLeadMagnet() {
               <div className="w-full md:w-80">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="mb-1.5 block font-mono text-[10px] uppercase text-neutral-500">
+                    <label className="mb-1.5 block font-mono text-[10px] uppercase text-[var(--brand-border-strong)]">
                       Work Email
                     </label>
                     <input
                       type="email"
                       required
                       placeholder="dev@company.com"
-                      className="input-base w-full rounded-sm px-3 py-3 text-sm placeholder:text-neutral-400"
+                      className="input-base w-full rounded-sm px-3 py-3 text-sm placeholder:text-[var(--brand-muted)]"
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block font-mono text-[10px] uppercase text-neutral-500">
+                    <label className="mb-1.5 block font-mono text-[10px] uppercase text-[var(--brand-border-strong)]">
                       Organization
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="Company Name"
-                      className="input-base w-full rounded-sm px-3 py-3 text-sm placeholder:text-neutral-400"
+                      className="input-base w-full rounded-sm px-3 py-3 text-sm placeholder:text-[var(--brand-muted)]"
                     />
                   </div>
                   <PrimaryCtaFrame tone="dark">
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center gap-2 rounded-[1px] bg-neutral-900 px-4 py-3 text-xs font-semibold tracking-wide text-white transition-colors hover:bg-neutral-800"
+                      className="flex w-full items-center justify-center gap-2 rounded-[1px] bg-[var(--background)] px-4 py-3 text-xs font-semibold tracking-wide text-[var(--foreground)] transition-colors hover:bg-[var(--brand-surface)]"
                     >
                       {status ?? "GET API KEYS"}
                     </button>
                   </PrimaryCtaFrame>
-                  <BodySmall className="text-center text-[10px] text-neutral-400">
+                  <BodySmall className="text-center text-[10px] text-[var(--brand-muted)]">
                     Free up to 10k traces/mo.
                   </BodySmall>
                 </form>

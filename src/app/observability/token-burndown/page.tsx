@@ -144,9 +144,9 @@ export default function TokenBurndownPage() {
   };
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="03 / Token Burndown"
             title="Token usage tracking and cost analysis."
@@ -162,10 +162,10 @@ export default function TokenBurndownPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           {/* Burndown Chart */}
-          <div className="border border-neutral-200 bg-white">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+          <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)]">
+            <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex items-center justify-between">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Token consumption over time
                 </BodySmall>
                 <div className="flex gap-2">
@@ -176,8 +176,8 @@ export default function TokenBurndownPage() {
                       onClick={() => setSelectedPeriod(period)}
                       className={`rounded-sm border px-2 py-1 text-[10px] font-medium transition-colors ${
                         selectedPeriod.label === period.label
-                          ? "border-neutral-300 bg-white text-neutral-900"
-                          : "border-neutral-200 bg-neutral-50 text-neutral-500 hover:bg-neutral-100"
+                          ? "border-[var(--brand-border-subtle)] bg-[var(--background)] text-[var(--foreground)]"
+                          : "border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] text-[var(--brand-muted)] hover:bg-[var(--brand-surface-soft)]"
                       }`}
                     >
                       {period.label}
@@ -190,8 +190,8 @@ export default function TokenBurndownPage() {
             <div className="overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pb-8">
               <div className="min-w-[600px]">
                 {/* Y-axis labels */}
-                <div className="mb-4 flex items-start justify-between border-b border-neutral-200 pb-2">
-                  <div className="flex flex-col gap-1 text-[10px] text-neutral-400">
+                <div className="mb-4 flex items-start justify-between border-b border-[var(--brand-border-subtle)] pb-2">
+                  <div className="flex flex-col gap-1 text-[10px] text-[var(--brand-muted)]">
                     {[1, 0.75, 0.5, 0.25, 0].map((ratio) => (
                       <span key={ratio}>
                         {formatTokens(MAX_TOKENS * ratio)}
@@ -208,7 +208,7 @@ export default function TokenBurndownPage() {
                       {[0, 0.25, 0.5, 0.75, 1].map((ratio) => (
                         <div
                           key={ratio}
-                          className="h-px border-t border-dashed border-neutral-200"
+                          className="h-px border-t border-dashed border-[var(--brand-border-subtle)]"
                           style={{ marginTop: ratio === 0 ? 0 : "-1px" }}
                         />
                       ))}
@@ -240,7 +240,7 @@ export default function TokenBurndownPage() {
                               className="w-full rounded-t-sm bg-gradient-to-t from-blue-600 to-blue-500 shadow-sm"
                               style={{ height: `${heightPercent}%` }}
                             >
-                              <div className="absolute -top-5 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-sm border border-neutral-200 bg-white px-2 py-1 text-[9px] shadow-sm group-hover:block">
+                              <div className="absolute -top-5 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] px-2 py-1 text-[9px] shadow-sm group-hover:block">
                                 {formatTokens(bucket.totalTokens)}
                               </div>
                             </div>
@@ -252,7 +252,7 @@ export default function TokenBurndownPage() {
                 </div>
 
                 {/* X-axis labels */}
-                <div className="flex justify-between border-t border-neutral-200 pt-2">
+                <div className="flex justify-between border-t border-[var(--brand-border-subtle)] pt-2">
                   {[
                     BUCKETED_DATA[0],
                     BUCKETED_DATA[Math.floor(BUCKETED_DATA.length / 4)],
@@ -262,7 +262,7 @@ export default function TokenBurndownPage() {
                   ].map((bucket) => (
                     <div
                       key={bucket.time}
-                      className="flex flex-col items-center text-[10px] text-neutral-400"
+                      className="flex flex-col items-center text-[10px] text-[var(--brand-muted)]"
                     >
                       <span>{formatTime(bucket.time)}</span>
                       <span className="text-[9px]">{formatDate(bucket.time)}</span>
@@ -271,13 +271,13 @@ export default function TokenBurndownPage() {
                 </div>
 
                 {/* Legend */}
-                <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-neutral-200 pt-4">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-[var(--brand-border-subtle)] pt-4">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                     Token types:
                   </span>
                   <div className="flex items-center gap-2 text-xs">
                     <div className="h-3 w-3 rounded-sm bg-blue-500" />
-                    <span className="text-neutral-600">Total Tokens</span>
+                    <span className="text-[var(--brand-muted)]">Total Tokens</span>
                   </div>
                 </div>
               </div>
@@ -286,25 +286,25 @@ export default function TokenBurndownPage() {
 
           {/* Details panel */}
           <div className="space-y-4">
-            <div className="sticky top-4 border border-neutral-200 bg-white p-6">
+            <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
               {selectedBucket ? (
                 <>
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
-                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Time period
                       </div>
                       <H3 className="mb-1 text-sm">
                         {formatTime(selectedBucket.time)}
                       </H3>
-                      <BodySmall className="text-neutral-500">
+                      <BodySmall className="text-[var(--brand-muted)]">
                         {formatDate(selectedBucket.time)}
                       </BodySmall>
                     </div>
                     <button
                       type="button"
                       onClick={() => setSelectedBucket(null)}
-                      className="text-neutral-300 transition-colors hover:text-neutral-600"
+                      className="text-[var(--brand-muted)] transition-colors hover:text-[var(--foreground)]"
                       aria-label="Clear selection"
                     >
                       <svg
@@ -323,68 +323,68 @@ export default function TokenBurndownPage() {
                     </button>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Total Tokens
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {formatTokens(selectedBucket.totalTokens)}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Cost
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {formatCost(selectedBucket.cost)}
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Input Tokens
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {formatTokens(selectedBucket.inputTokens)}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Output Tokens
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {formatTokens(selectedBucket.outputTokens)}
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="rounded-sm border border-neutral-200 bg-neutral-50 p-4">
-                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                       Operations ({selectedBucket.count})
                     </div>
                     <div className="space-y-2 max-h-48 overflow-y-auto">
                       {selectedBucket.entries.slice(0, 5).map((entry) => (
                         <div
                           key={entry.id}
-                          className="rounded-sm border border-neutral-200 bg-white p-2"
+                          className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] p-2"
                         >
-                          <div className="mb-1 text-xs font-medium text-neutral-900">
+                          <div className="mb-1 text-xs font-medium text-[var(--foreground)]">
                             {entry.agent}
                           </div>
-                          <div className="text-[10px] text-neutral-500">
+                          <div className="text-[10px] text-[var(--brand-muted)]">
                             {entry.operation}
                           </div>
-                          <div className="mt-1 flex justify-between text-[9px] text-neutral-600">
+                          <div className="mt-1 flex justify-between text-[9px] text-[var(--brand-muted)]">
                             <span>{formatTokens(entry.totalTokens)} tokens</span>
                             <span>{formatCost(entry.cost)}</span>
                           </div>
                         </div>
                       ))}
                       {selectedBucket.entries.length > 5 && (
-                        <div className="text-center text-[10px] text-neutral-400">
+                        <div className="text-center text-[10px] text-[var(--brand-muted)]">
                           +{selectedBucket.entries.length - 5} more
                         </div>
                       )}
@@ -394,10 +394,10 @@ export default function TokenBurndownPage() {
               ) : (
                 <div className="text-center">
                   <div className="mb-3 text-3xl">📊</div>
-                  <BodySmall className="mb-1 font-medium text-neutral-900">
+                  <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                     Select a time period to inspect token usage.
                   </BodySmall>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Click on any bar in the chart to view detailed token
                     consumption, costs, and operations for that time period.
                   </BodySmall>
@@ -405,40 +405,40 @@ export default function TokenBurndownPage() {
               )}
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Overall statistics
               </div>
-              <div className="grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+              <div className="grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {formatTokens(TOTAL_TOKENS)}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Total Tokens
                   </BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {formatCost(TOTAL_COST)}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Total Cost
                   </BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {TOKEN_DATA.length}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Operations
                   </BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {formatTokens(Math.floor(TOTAL_TOKENS / TOKEN_DATA.length))}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Avg/Operation
                   </BodySmall>
                 </div>

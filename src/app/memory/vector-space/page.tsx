@@ -236,7 +236,7 @@ export default function VectorSpacePage() {
         .attr("x2", xScale(val))
         .attr("y1", 0)
         .attr("y2", height)
-        .attr("stroke", "#e5e7eb")
+        .attr("stroke", "var(--brand-grid-line)")
         .attr("stroke-width", 1)
         .attr("stroke-dasharray", "2,2");
 
@@ -246,7 +246,7 @@ export default function VectorSpacePage() {
         .attr("x2", width)
         .attr("y1", yScale(val))
         .attr("y2", yScale(val))
-        .attr("stroke", "#e5e7eb")
+        .attr("stroke", "var(--brand-grid-line)")
         .attr("stroke-width", 1)
         .attr("stroke-dasharray", "2,2");
     });
@@ -261,14 +261,14 @@ export default function VectorSpacePage() {
       .call(xAxis)
       .selectAll("text")
       .style("font-size", "10px")
-      .style("fill", "#6b7280");
+      .style("fill", "var(--brand-muted)");
 
     g.append("g")
       .attr("class", "y-axis")
       .call(yAxis)
       .selectAll("text")
       .style("font-size", "10px")
-      .style("fill", "#6b7280");
+      .style("fill", "var(--brand-muted)");
 
     // Add axis labels
     g.append("text")
@@ -276,7 +276,7 @@ export default function VectorSpacePage() {
       .attr("transform", `translate(${width / 2},${height + 45})`)
       .style("text-anchor", "middle")
       .style("font-size", "11px")
-      .style("fill", "#6b7280")
+      .style("fill", "var(--brand-muted)")
       .text(`${projectionMethod.toUpperCase()} Dimension 1`);
 
     g.append("text")
@@ -286,7 +286,7 @@ export default function VectorSpacePage() {
       .attr("x", -height / 2)
       .style("text-anchor", "middle")
       .style("font-size", "11px")
-      .style("fill", "#6b7280")
+      .style("fill", "var(--brand-muted)")
       .text(`${projectionMethod.toUpperCase()} Dimension 2`);
 
     // Draw points
@@ -304,7 +304,7 @@ export default function VectorSpacePage() {
         hoveredPoint && hoveredPoint !== d.id ? 0.3 : 0.7,
       )
       .attr("stroke", (d) =>
-        selectedPoint?.id === d.id ? "#000" : "#fff",
+        selectedPoint?.id === d.id ? "var(--foreground)" : "var(--background)",
       )
       .attr("stroke-width", (d) => (selectedPoint?.id === d.id ? 2 : 1))
       .style("cursor", "pointer")
@@ -330,7 +330,7 @@ export default function VectorSpacePage() {
       .attr("x", (d) => xScale(d.x) + 10)
       .attr("y", (d) => yScale(d.y) - 10)
       .attr("font-size", "10px")
-      .attr("fill", "#374151")
+      .attr("fill", "var(--foreground)")
       .attr("font-weight", "500")
       .text((d) => d.label);
 
@@ -346,7 +346,7 @@ export default function VectorSpacePage() {
         g.append("path")
           .datum(hull)
           .attr("fill", "none")
-          .attr("stroke", "#d1d5db")
+          .attr("stroke", "var(--brand-border-subtle)")
           .attr("stroke-width", 1)
           .attr("stroke-dasharray", "5,5")
           .attr("opacity", 0.5)
@@ -380,9 +380,9 @@ export default function VectorSpacePage() {
   };
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="01 / Vector Space"
             title="Embedding space explorer visualization."
@@ -398,10 +398,10 @@ export default function VectorSpacePage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           {/* Vector Space Visualization */}
-          <div className="border border-neutral-200 bg-white">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+          <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)]">
+            <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex items-center justify-between">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Embedding Space Projection
                 </BodySmall>
                 <div className="flex items-center gap-2">
@@ -412,8 +412,8 @@ export default function VectorSpacePage() {
                       onClick={() => setProjectionMethod(method.id)}
                       className={`rounded-sm border px-2 py-1 text-[10px] font-medium transition-colors ${
                         projectionMethod === method.id
-                          ? "border-neutral-900 bg-neutral-900 text-white"
-                          : "border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50"
+                          ? "border-[var(--brand-surface)] bg-[var(--brand-surface)] text-[var(--foreground)]"
+                          : "border-[var(--brand-border-subtle)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--brand-surface-soft)]"
                       }`}
                     >
                       {method.label}
@@ -427,15 +427,15 @@ export default function VectorSpacePage() {
               <div className="flex justify-center">
                 <svg
                   ref={svgRef}
-                  className="border border-neutral-200 bg-white"
+                  className="border border-[var(--brand-border-subtle)] bg-[var(--background)]"
                 />
               </div>
             </div>
 
             {/* Legend */}
-            <div className="border-t border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+            <div className="border-t border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex flex-wrap items-center gap-4">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Legend:
                 </BodySmall>
                 {Object.entries(TYPE_COLORS).map(([type, color]) => (
@@ -444,7 +444,7 @@ export default function VectorSpacePage() {
                       className="h-3 w-3 rounded-full"
                       style={{ backgroundColor: color }}
                     />
-                    <BodySmall className="text-[10px] text-neutral-600">
+                    <BodySmall className="text-[10px] text-[var(--brand-muted)]">
                       {TYPE_LABELS[type as EmbeddingType]}
                     </BodySmall>
                   </div>
@@ -455,23 +455,23 @@ export default function VectorSpacePage() {
 
           {/* Details Panel */}
           <div className="space-y-4">
-            <div className="sticky top-4 border border-neutral-200 bg-white p-6">
+            <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
               {selectedPoint ? (
                 <>
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
-                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Vector Details
                       </div>
                       <H3 className="mb-1 text-sm">{selectedPoint.label}</H3>
-                      <BodySmall className="text-neutral-500">
+                      <BodySmall className="text-[var(--brand-muted)]">
                         {selectedPoint.description}
                       </BodySmall>
                     </div>
                     <button
                       type="button"
                       onClick={() => setSelectedPoint(null)}
-                      className="text-neutral-300 transition-colors hover:text-neutral-600"
+                      className="text-[var(--brand-muted)] transition-colors hover:text-[var(--foreground)]"
                       aria-label="Clear selection"
                     >
                       <svg
@@ -490,20 +490,20 @@ export default function VectorSpacePage() {
                     </button>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Type
                       </div>
-                      <BodySmall className="text-neutral-800 capitalize">
+                      <BodySmall className="text-[var(--foreground)] capitalize">
                         {selectedPoint.type}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Cluster
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedPoint.cluster !== undefined
                           ? `Cluster ${selectedPoint.cluster}`
                           : "Outlier"}
@@ -511,30 +511,30 @@ export default function VectorSpacePage() {
                     </div>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Position (X, Y)
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         ({selectedPoint.x.toFixed(3)}, {selectedPoint.y.toFixed(3)})
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Original Dim
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedPoint.originalDim}
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="rounded-sm border border-neutral-200 bg-neutral-50 p-4">
-                    <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                    <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                       Token Count
                     </div>
-                    <BodySmall className="text-neutral-800">
+                    <BodySmall className="text-[var(--foreground)]">
                       {selectedPoint.tokenCount.toLocaleString()} tokens
                     </BodySmall>
                   </div>
@@ -542,10 +542,10 @@ export default function VectorSpacePage() {
               ) : (
                 <div className="text-center">
                   <div className="mb-3 text-3xl">📍</div>
-                  <BodySmall className="mb-1 font-medium text-neutral-900">
+                  <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                     Click a point to inspect details.
                   </BodySmall>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Select any embedding vector to see its properties, position
                     in the projected space, cluster assignment, and metadata.
                   </BodySmall>
@@ -553,52 +553,52 @@ export default function VectorSpacePage() {
               )}
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Space Statistics
               </div>
-              <div className="grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+              <div className="grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {stats.totalVectors}
                   </div>
-                  <BodySmall className="text-neutral-500">Vectors</BodySmall>
+                  <BodySmall className="text-[var(--brand-muted)]">Vectors</BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {stats.clusters}
                   </div>
-                  <BodySmall className="text-neutral-500">Clusters</BodySmall>
+                  <BodySmall className="text-[var(--brand-muted)]">Clusters</BodySmall>
                 </div>
               </div>
-              <div className="mt-2 rounded-sm border border-neutral-200 bg-neutral-50 p-3">
-                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+              <div className="mt-2 rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-3">
+                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Average Dimensions
                 </div>
-                <BodySmall className="text-neutral-800">
+                <BodySmall className="text-[var(--foreground)]">
                   {stats.avgDim} dimensions
                 </BodySmall>
               </div>
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 By Type
               </div>
               <div className="space-y-1">
                 {Object.entries(stats.byType).map(([type, count]) => (
                   <div
                     key={type}
-                    className="flex items-center justify-between border-b border-neutral-200 pb-1 text-[10px] last:border-0 last:pb-0"
+                    className="flex items-center justify-between border-b border-[var(--brand-border-subtle)] pb-1 text-[10px] last:border-0 last:pb-0"
                   >
                     <div className="flex items-center gap-2">
                       <div
                         className="h-2 w-2 rounded-full"
                         style={{ backgroundColor: TYPE_COLORS[type as EmbeddingType] }}
                       />
-                      <span className="capitalize text-neutral-700">{type}</span>
+                      <span className="capitalize text-[var(--foreground)]">{type}</span>
                     </div>
-                    <span className="text-neutral-500">{count}</span>
+                    <span className="text-[var(--brand-muted)]">{count}</span>
                   </div>
                 ))}
               </div>

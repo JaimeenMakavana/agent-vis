@@ -247,7 +247,7 @@ export default function SwimlanesPage() {
   };
 
   const statusColors: Record<TaskStatus, string> = {
-    pending: "bg-neutral-300",
+    pending: "bg-[var(--brand-border-subtle)]",
     running: "bg-yellow-500",
     completed: "bg-green-500",
     blocked: "bg-red-500",
@@ -263,10 +263,10 @@ export default function SwimlanesPage() {
   };
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
         {/* Header */}
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="03 / Swimlanes"
             title="Parallel execution lanes with dependencies."
@@ -283,8 +283,8 @@ export default function SwimlanesPage() {
               onClick={() => setShowDependencies(!showDependencies)}
               className={`px-4 py-2 rounded-sm text-xs font-medium tracking-wide transition-colors border ${
                 showDependencies
-                  ? "bg-neutral-900 text-white border-neutral-900"
-                  : "bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50"
+                  ? "bg-[var(--brand-surface)] text-[var(--foreground)] border-[var(--brand-surface)]"
+                  : "bg-[var(--background)] text-[var(--foreground)] border-[var(--brand-border-subtle)] hover:bg-[var(--brand-surface-soft)]"
               }`}
             >
               {showDependencies ? "✓ Dependencies" : "Show Dependencies"}
@@ -293,8 +293,8 @@ export default function SwimlanesPage() {
               onClick={() => setHighlightCriticalPath(!highlightCriticalPath)}
               className={`px-4 py-2 rounded-sm text-xs font-medium tracking-wide transition-colors border ${
                 highlightCriticalPath
-                  ? "bg-neutral-900 text-white border-neutral-900"
-                  : "bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50"
+                  ? "bg-[var(--brand-surface)] text-[var(--foreground)] border-[var(--brand-surface)]"
+                  : "bg-[var(--background)] text-[var(--foreground)] border-[var(--brand-border-subtle)] hover:bg-[var(--brand-surface-soft)]"
               }`}
             >
               {highlightCriticalPath ? "✓ Critical Path" : "Critical Path"}
@@ -303,36 +303,36 @@ export default function SwimlanesPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="mb-8 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200 sm:grid-cols-4">
-          <div className="bg-white p-4 sm:p-6">
-            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
+        <div className="mb-8 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)] sm:grid-cols-4">
+          <div className="bg-[var(--background)] p-4 sm:p-6">
+            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)] sm:text-[10px]">
               Total Duration
             </div>
-            <div className="text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
+            <div className="text-xl font-medium tracking-tighter text-[var(--foreground)] sm:text-2xl md:text-3xl">
               {formatTime(TOTAL_DURATION)}
             </div>
           </div>
-          <div className="bg-white p-4 sm:p-6">
-            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
+          <div className="bg-[var(--background)] p-4 sm:p-6">
+            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)] sm:text-[10px]">
               Swimlanes
             </div>
-            <div className="text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
+            <div className="text-xl font-medium tracking-tighter text-[var(--foreground)] sm:text-2xl md:text-3xl">
               {swimlanes.length}
             </div>
           </div>
-          <div className="bg-white p-4 sm:p-6">
-            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
+          <div className="bg-[var(--background)] p-4 sm:p-6">
+            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)] sm:text-[10px]">
               Total Tasks
             </div>
-            <div className="text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
+            <div className="text-xl font-medium tracking-tighter text-[var(--foreground)] sm:text-2xl md:text-3xl">
               {SWIMLANE_TASKS.length}
             </div>
           </div>
-          <div className="bg-white p-4 sm:p-6">
-            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500 sm:text-[10px]">
+          <div className="bg-[var(--background)] p-4 sm:p-6">
+            <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)] sm:text-[10px]">
               Dependencies
             </div>
-            <div className="text-xl font-medium tracking-tighter text-neutral-900 sm:text-2xl md:text-3xl">
+            <div className="text-xl font-medium tracking-tighter text-[var(--foreground)] sm:text-2xl md:text-3xl">
               {
                 SWIMLANE_TASKS.filter(
                   (t) => t.dependencies && t.dependencies.length > 0
@@ -343,14 +343,14 @@ export default function SwimlanesPage() {
         </div>
 
         {/* Swimlanes Container */}
-        <div className="bg-white border border-neutral-200 overflow-hidden">
+        <div className="bg-[var(--background)] border border-[var(--brand-border-subtle)] overflow-hidden">
           {/* Timeline Header */}
-          <div className="border-b border-neutral-200 bg-neutral-50 p-4">
+          <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
             <div className="flex items-center justify-between mb-2">
-              <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+              <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Swimlane View
               </BodySmall>
-              <BodySmall className="text-neutral-400">
+              <BodySmall className="text-[var(--brand-muted)]">
                 Click tasks to inspect • Dependencies show task flow
               </BodySmall>
             </div>
@@ -358,10 +358,10 @@ export default function SwimlanesPage() {
               {[0, 1, 2, 3, 4, 5, 6].map((second) => (
                 <div
                   key={second}
-                  className="absolute top-0 h-full border-l border-neutral-200"
+                  className="absolute top-0 h-full border-l border-[var(--brand-border-subtle)]"
                   style={{ left: `${(second / 6) * 100}%` }}
                 >
-                  <span className="absolute -top-1 -left-2 font-mono text-xs text-neutral-400">
+                  <span className="absolute -top-1 -left-2 font-mono text-xs text-[var(--brand-muted)]">
                     {second}s
                   </span>
                 </div>
@@ -450,7 +450,7 @@ export default function SwimlanesPage() {
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-48 shrink-0">
                     <H3 className="mb-0 text-sm">{lane.name}</H3>
-                    <BodySmall className="text-neutral-400">
+                    <BodySmall className="text-[var(--brand-muted)]">
                       {lane.tasks.length} task
                       {lane.tasks.length !== 1 ? "s" : ""}
                     </BodySmall>
@@ -458,12 +458,12 @@ export default function SwimlanesPage() {
                 </div>
 
                 {/* Task Lane */}
-                <div className="relative h-20 bg-neutral-50 rounded-sm border border-neutral-200">
+                <div className="relative h-20 bg-[var(--brand-surface-soft)] rounded-sm border border-[var(--brand-border-subtle)]">
                   {/* Grid lines */}
                   {[0, 1, 2, 3, 4, 5, 6].map((second) => (
                     <div
                       key={second}
-                      className="absolute top-0 h-full border-l border-neutral-200"
+                      className="absolute top-0 h-full border-l border-[var(--brand-border-subtle)]"
                       style={{ left: `${(second / 6) * 100}%` }}
                     />
                   ))}
@@ -486,7 +486,7 @@ export default function SwimlanesPage() {
                         key={task.id}
                         className={`absolute top-3 h-14 rounded-sm cursor-pointer transition-all duration-200 ${
                           isSelected
-                            ? "ring-2 ring-neutral-900 shadow-lg z-20"
+                            ? "ring-2 ring-[var(--brand-surface)] shadow-lg z-20"
                             : "hover:shadow-md hover:z-10"
                         } ${
                           isCritical && highlightCriticalPath
@@ -535,7 +535,7 @@ export default function SwimlanesPage() {
 
         {/* Task Details Panel */}
         {selectedTask && (
-          <div className="mt-6 bg-white border border-neutral-200 p-6">
+          <div className="mt-6 bg-[var(--background)] border border-[var(--brand-border-subtle)] p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-3 mb-2">
@@ -552,13 +552,13 @@ export default function SwimlanesPage() {
                     {statusLabels[selectedTask.status]}
                   </span>
                 </div>
-                <BodySmall className="text-neutral-500">
+                <BodySmall className="text-[var(--brand-muted)]">
                   {selectedTask.lane} • {selectedTask.agent}
                 </BodySmall>
               </div>
               <button
                 onClick={() => setSelectedTask(null)}
-                className="text-neutral-400 hover:text-neutral-600 transition-colors"
+                className="text-[var(--brand-muted)] hover:text-[var(--foreground)] transition-colors"
               >
                 <svg
                   className="w-6 h-6"
@@ -576,28 +576,28 @@ export default function SwimlanesPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-3 gap-px border border-neutral-200 bg-neutral-200 mb-4">
-              <div className="bg-neutral-50 p-3">
-                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+            <div className="grid grid-cols-3 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)] mb-4">
+              <div className="bg-[var(--brand-surface-soft)] p-3">
+                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Start Time
                 </div>
-                <div className="text-lg font-medium tracking-tight text-neutral-900">
+                <div className="text-lg font-medium tracking-tight text-[var(--foreground)]">
                   {formatTime(selectedTask.startTime)}
                 </div>
               </div>
-              <div className="bg-neutral-50 p-3">
-                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+              <div className="bg-[var(--brand-surface-soft)] p-3">
+                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Duration
                 </div>
-                <div className="text-lg font-medium tracking-tight text-neutral-900">
+                <div className="text-lg font-medium tracking-tight text-[var(--foreground)]">
                   {formatTime(selectedTask.duration)}
                 </div>
               </div>
-              <div className="bg-neutral-50 p-3">
-                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+              <div className="bg-[var(--brand-surface-soft)] p-3">
+                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                   End Time
                 </div>
-                <div className="text-lg font-medium tracking-tight text-neutral-900">
+                <div className="text-lg font-medium tracking-tight text-[var(--foreground)]">
                   {formatTime(selectedTask.startTime + selectedTask.duration)}
                 </div>
               </div>
@@ -627,11 +627,11 @@ export default function SwimlanesPage() {
                 </div>
               )}
 
-            <div className="bg-neutral-50 border border-neutral-200 rounded-sm p-4">
-              <div className="text-xs font-medium text-neutral-900 mb-2">
+            <div className="bg-[var(--brand-surface-soft)] border border-[var(--brand-border-subtle)] rounded-sm p-4">
+              <div className="text-xs font-medium text-[var(--foreground)] mb-2">
                 Task Details
               </div>
-              <BodySmall className="text-neutral-600">
+              <BodySmall className="text-[var(--brand-muted)]">
                 {selectedTask.details}
               </BodySmall>
             </div>
@@ -639,18 +639,22 @@ export default function SwimlanesPage() {
         )}
 
         {/* Legend */}
-        <div className="mt-6 bg-white border border-neutral-200 p-6">
-          <div className="mb-4 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+        <div className="mt-6 bg-[var(--background)] border border-[var(--brand-border-subtle)] p-6">
+          <div className="mb-4 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
             Legend
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-sm bg-blue-500" />
-              <BodySmall className="text-neutral-600">Completed Task</BodySmall>
+              <BodySmall className="text-[var(--brand-muted)]">
+                Completed Task
+              </BodySmall>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-sm bg-red-500" />
-              <BodySmall className="text-neutral-600">Blocked Task</BodySmall>
+              <BodySmall className="text-[var(--brand-muted)]">
+                Blocked Task
+              </BodySmall>
             </div>
             <div className="flex items-center gap-2">
               <svg width="20" height="20" className="text-purple-500">
@@ -662,7 +666,9 @@ export default function SwimlanesPage() {
                 />
                 <polygon points="15,7 20,10 15,13" fill="currentColor" />
               </svg>
-              <BodySmall className="text-neutral-600">Dependency</BodySmall>
+              <BodySmall className="text-[var(--brand-muted)]">
+                Dependency
+              </BodySmall>
             </div>
           </div>
         </div>

@@ -115,7 +115,7 @@ function categoryColor(category: OperationStage["category"]) {
     case "storage":
       return "bg-emerald-500";
     default:
-      return "bg-neutral-500";
+      return "bg-[var(--brand-muted)]";
   }
 }
 
@@ -132,7 +132,7 @@ function categoryBadge(category: OperationStage["category"]) {
     case "storage":
       return "bg-emerald-50 text-emerald-700 border-emerald-200";
     default:
-      return "bg-neutral-50 text-neutral-700 border-neutral-200";
+      return "bg-[var(--brand-surface-soft)] text-[var(--foreground)] border-[var(--brand-border-subtle)]";
   }
 }
 
@@ -149,9 +149,9 @@ export default function LatencyWaterfallPage() {
   };
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="01 / Latency Waterfall"
             title="Request latency breakdown visualization."
@@ -167,13 +167,13 @@ export default function LatencyWaterfallPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           {/* Waterfall chart */}
-          <div className="border border-neutral-200 bg-white">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+          <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)]">
+            <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex items-center justify-between">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Latency waterfall
                 </BodySmall>
-                <BodySmall className="text-neutral-400">
+                <BodySmall className="text-[var(--brand-muted)]">
                   Click any bar to inspect details.
                 </BodySmall>
               </div>
@@ -182,11 +182,11 @@ export default function LatencyWaterfallPage() {
             <div className="overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pb-8">
               <div className="min-w-[600px]">
                 {/* Timeline header */}
-                <div className="mb-6 flex justify-between border-b border-neutral-200 pb-2">
+                <div className="mb-6 flex justify-between border-b border-[var(--brand-border-subtle)] pb-2">
                   {[0, 0.25, 0.5, 0.75, 1].map((t) => (
                     <div
                       key={t}
-                      className="flex flex-col items-center text-[10px] text-neutral-400"
+                      className="flex flex-col items-center text-[10px] text-[var(--brand-muted)]"
                     >
                       <span>{formatMs(TOTAL_DURATION_MS * t)}</span>
                     </div>
@@ -210,7 +210,7 @@ export default function LatencyWaterfallPage() {
                         className="group flex w-full items-center gap-4 text-left"
                       >
                         <div className="w-32 shrink-0">
-                          <div className="text-xs font-medium text-neutral-900">
+                          <div className="text-xs font-medium text-[var(--foreground)]">
                             {op.label}
                           </div>
                           <div
@@ -225,7 +225,7 @@ export default function LatencyWaterfallPage() {
                         <div className="relative flex-1">
                           <div className="relative h-10">
                             {/* Background track */}
-                            <div className="absolute inset-0 rounded-sm bg-neutral-100" />
+                            <div className="absolute inset-0 rounded-sm bg-[var(--brand-surface-soft)]" />
 
                             {/* Operation bar */}
                             <div
@@ -256,13 +256,13 @@ export default function LatencyWaterfallPage() {
                 </div>
 
                 {/* Time axis */}
-                <div className="pointer-events-none mt-6 flex justify-between border-t border-neutral-200 pt-2">
+                <div className="pointer-events-none mt-6 flex justify-between border-t border-[var(--brand-border-subtle)] pt-2">
                   {[0, 0.25, 0.5, 0.75, 1].map((t) => (
                     <div
                       key={t}
-                      className="flex flex-col items-center text-[10px] text-neutral-400"
+                      className="flex flex-col items-center text-[10px] text-[var(--brand-muted)]"
                     >
-                      <div className="h-3 w-px bg-neutral-200" />
+                      <div className="h-3 w-px bg-[var(--brand-border-subtle)]" />
                       <span className="mt-1">{formatMs(TOTAL_DURATION_MS * t)}</span>
                     </div>
                   ))}
@@ -273,25 +273,25 @@ export default function LatencyWaterfallPage() {
 
           {/* Details panel */}
           <div className="space-y-4">
-            <div className="sticky top-4 border border-neutral-200 bg-white p-6">
+            <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
               {selectedOperation ? (
                 <>
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
-                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Operation details
                       </div>
                       <H3 className="mb-1 text-sm">
                         {selectedOperation.label}
                       </H3>
-                      <BodySmall className="text-neutral-500">
+                      <BodySmall className="text-[var(--brand-muted)]">
                         {selectedOperation.description}
                       </BodySmall>
                     </div>
                     <button
                       type="button"
                       onClick={() => setSelectedOperation(null)}
-                      className="text-neutral-300 transition-colors hover:text-neutral-600"
+                      className="text-[var(--brand-muted)] transition-colors hover:text-[var(--foreground)]"
                       aria-label="Clear selection"
                     >
                       <svg
@@ -310,28 +310,28 @@ export default function LatencyWaterfallPage() {
                     </button>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Start Time
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {formatMs(selectedOperation.startMs)}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Duration
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {formatMs(selectedOperation.durationMs)}
                       </BodySmall>
                     </div>
                   </div>
 
                   {selectedOperation.metadata && (
-                    <div className="rounded-sm border border-neutral-200 bg-neutral-50 p-4">
-                      <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                      <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Metadata
                       </div>
                       <div className="space-y-1.5">
@@ -341,8 +341,8 @@ export default function LatencyWaterfallPage() {
                               key={key}
                               className="flex justify-between text-xs"
                             >
-                              <span className="text-neutral-600">{key}:</span>
-                              <span className="font-medium text-neutral-900">
+                              <span className="text-[var(--brand-muted)]">{key}:</span>
+                              <span className="font-medium text-[var(--foreground)]">
                                 {value}
                               </span>
                             </div>
@@ -355,10 +355,10 @@ export default function LatencyWaterfallPage() {
               ) : (
                 <div className="text-center">
                   <div className="mb-3 text-3xl">⏱️</div>
-                  <BodySmall className="mb-1 font-medium text-neutral-900">
+                  <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                     Select an operation bar to inspect timing.
                   </BodySmall>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Use this panel to view detailed timing information, metadata,
                     and performance characteristics for each stage.
                   </BodySmall>
@@ -366,34 +366,34 @@ export default function LatencyWaterfallPage() {
               )}
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Request statistics
               </div>
-              <div className="grid grid-cols-3 gap-px border border-neutral-200 bg-neutral-200">
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+              <div className="grid grid-cols-3 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {OPERATIONS.length}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Operations
                   </BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {formatMs(TOTAL_DURATION_MS)}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Total Time
                   </BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {formatMs(
                       Math.max(...OPERATIONS.map((op) => op.durationMs)),
                     )}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Slowest
                   </BodySmall>
                 </div>

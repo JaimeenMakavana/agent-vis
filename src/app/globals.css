@@ -1,20 +1,105 @@
 @import "tailwindcss";
 
 :root {
-  /* Core theme tokens */
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b0f14;
+  --foreground: #e5e7eb;
 
-  /* Brand system tokens */
-  --brand-surface: #ffffff;
-  --brand-surface-soft: #fafafa;
-  --brand-grid-line: #e5e5e5;
-  --brand-border-subtle: #e5e5e5;
-  --brand-border-strong: #d4d4d4;
-  --brand-muted: #a3a3a3;
-  --brand-blue: #2563eb;
-  --brand-blue-soft: #3b82f6;
-  --brand-accent: #0f172a;
+  --brand-surface: #111827;
+  --brand-surface-soft: #1f2933;
+  --brand-grid-line: #1f2937;
+  --brand-border-subtle: #374151;
+  --brand-border-strong: #4b5563;
+  --brand-muted: #9ca3af;
+
+  --brand-blue: #3b82f6;
+  --brand-blue-soft: #60a5fa;
+  --brand-accent: #e5e7eb;
+
+  /* Light theme colors for traceability pages */
+  --light-background: #ffffff;
+  --light-surface: #ffffff;
+  --light-surface-soft: #fafafa;
+  --light-border-subtle: #e5e7eb;
+  --light-border-strong: #d1d5db;
+  --light-text-primary: #111827;
+  --light-text-secondary: #6b7280;
+  --light-text-tertiary: #9ca3af;
+  --light-text-muted: #d1d5db;
+
+  /* Semantic colors - light theme variants */
+  --light-blue-50: #eff6ff;
+  --light-blue-100: #dbeafe;
+  --light-blue-200: #bfdbfe;
+  --light-blue-500: #3b82f6;
+  --light-blue-600: #2563eb;
+  --light-blue-700: #1d4ed8;
+
+  --light-green-50: #f0fdf4;
+  --light-green-100: #dcfce7;
+  --light-green-200: #bbf7d0;
+  --light-green-500: #22c55e;
+  --light-green-600: #16a34a;
+
+  --light-red-50: #fef2f2;
+  --light-red-100: #fee2e2;
+  --light-red-200: #fecaca;
+  --light-red-500: #ef4444;
+  --light-red-600: #dc2626;
+  --light-red-700: #b91c1c;
+
+  --light-purple-50: #faf5ff;
+  --light-purple-100: #f3e8ff;
+  --light-purple-200: #e9d5ff;
+  --light-purple-500: #8b5cf6;
+
+  --light-amber-500: #f59e0b;
+  --light-rose-500: #ec4899;
+  --light-cyan-500: #06b6d4;
+
+  --light-amber-50: #fffbeb;
+  --light-amber-100: #fef3c7;
+  --light-amber-200: #fde68a;
+
+  --light-rose-50: #fff1f2;
+  --light-rose-100: #ffe4e6;
+  --light-rose-200: #fecdd3;
+
+  --light-cyan-50: #ecfeff;
+  --light-cyan-100: #cffafe;
+  --light-cyan-200: #a5f3fc;
+
+  --light-indigo-50: #eef2ff;
+  --light-indigo-100: #e0e7ff;
+  --light-indigo-200: #c7d2fe;
+
+  --light-orange-50: #fff7ed;
+  --light-orange-100: #ffedd5;
+  --light-orange-200: #fed7aa;
+
+  --light-emerald-50: #ecfdf5;
+  --light-emerald-100: #d1fae5;
+  --light-emerald-200: #a7f3d0;
+  --light-emerald-500: #10b981;
+  --light-emerald-600: #059669;
+  --light-emerald-700: #047857;
+
+  --light-neutral-50: #fafafa;
+  --light-neutral-100: #f5f5f5;
+  --light-neutral-200: #e5e7eb;
+  --light-neutral-300: #d1d5db;
+  --light-neutral-400: #9ca3af;
+  --light-neutral-500: #6b7280;
+  --light-neutral-600: #4b5563;
+  --light-neutral-700: #374151;
+  --light-neutral-800: #1f2937;
+  --light-neutral-900: #111827;
+
+  /* Status colors for tree of thoughts */
+  --status-explored: #3b82f6;
+  --status-pruned: #ef4444;
+  --status-optimal: #10b981;
+  --status-pending: #6b7280;
+  --status-stroke-default: #94a3b8;
 }
 
 @theme inline {

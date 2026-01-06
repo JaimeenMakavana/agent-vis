@@ -159,12 +159,12 @@ export default function TreeOfThoughtsPage() {
     const root = d3.hierarchy<ThoughtNode>(MOCK_TREE_DATA);
     const treeData = treeLayout(root);
 
-    // Color scheme based on status
+    // Color scheme based on status - using CSS variables
     const colorMap: Record<ThoughtStatus, string> = {
-      explored: "#3b82f6", // blue
-      pruned: "#ef4444", // red
-      optimal: "#10b981", // green
-      pending: "#6b7280", // gray
+      explored: "var(--status-explored)",
+      pruned: "var(--status-pruned)",
+      optimal: "var(--status-optimal)",
+      pending: "var(--status-pending)",
     };
 
     // Draw links (edges)
@@ -185,10 +185,10 @@ export default function TreeOfThoughtsPage() {
       .style("stroke", (d: any) => {
         const targetStatus = d.target.data.status;
         return targetStatus === "optimal"
-          ? "#10b981"
+          ? "var(--status-optimal)"
           : targetStatus === "pruned"
-          ? "#ef4444"
-          : "#94a3b8";
+          ? "var(--status-pruned)"
+          : "var(--status-stroke-default)";
       })
       .style("stroke-width", (d: any) =>
         d.target.data.status === "optimal" ? 3 : 2
@@ -219,11 +219,11 @@ export default function TreeOfThoughtsPage() {
         const status = d.data.status as ThoughtStatus;
         return colorMap[status];
       })
-      .style("stroke", "#fff")
+      .style("stroke", "var(--background)")
       .style("stroke-width", 3)
       .style("filter", (d: any) =>
         d.data.status === "optimal"
-          ? "drop-shadow(0 0 8px rgba(16, 185, 129, 0.5))"
+          ? "drop-shadow(0 0 8px color-mix(in srgb, var(--status-optimal) 50%, transparent))"
           : "none"
       );
 
@@ -248,7 +248,7 @@ export default function TreeOfThoughtsPage() {
       .attr("x", 37)
       .attr("y", 4)
       .attr("text-anchor", "middle")
-      .style("fill", "#fff")
+      .style("fill", "var(--background)")
       .style("font-size", "11px")
       .style("font-weight", "bold")
       .text((d: any) => d.data.score.toFixed(2));
@@ -263,7 +263,7 @@ export default function TreeOfThoughtsPage() {
       .style("font-weight", (d: any) =>
         d.data.status === "optimal" ? "bold" : "normal"
       )
-      .style("fill", "#1e293b")
+      .style("fill", "var(--foreground)")
       .text((d: any) => {
         const text = d.data.text;
         return text.length > 35 ? text.substring(0, 35) + "..." : text;
@@ -287,29 +287,33 @@ export default function TreeOfThoughtsPage() {
     const statusConfig: Record<ThoughtStatus, StatusInfo> = {
       explored: {
         label: "Explored",
-        color: "bg-blue-50 text-blue-700 border-blue-200",
+        color:
+          "bg-[var(--brand-surface-soft)] text-[var(--brand-blue)] border-[var(--brand-border-subtle)]",
       },
       pruned: {
         label: "Pruned",
-        color: "bg-red-50 text-red-700 border-red-200",
+        color:
+          "bg-[var(--brand-surface-soft)] text-[var(--status-pruned)] border-[var(--brand-border-subtle)]",
       },
       optimal: {
         label: "Optimal Path",
-        color: "bg-emerald-50 text-emerald-700 border-emerald-200",
+        color:
+          "bg-[var(--brand-surface-soft)] text-[var(--status-optimal)] border-[var(--brand-border-subtle)]",
       },
       pending: {
         label: "Pending",
-        color: "bg-neutral-50 text-neutral-700 border-neutral-200",
+        color:
+          "bg-[var(--brand-surface-soft)] text-[var(--foreground)] border-[var(--brand-border-subtle)]",
       },
     };
     return statusConfig[status];
   };
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
         {/* Header */}
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="02 / Tree of Thoughts"
             title="Decision & search tree for agent reasoning."
@@ -324,31 +328,33 @@ export default function TreeOfThoughtsPage() {
         </div>
 
         {/* Legend + Helper Copy */}
-        <div className="mb-8 border border-neutral-200 bg-white px-4 py-3 sm:px-6 sm:py-4">
+        <div className="mb-8 border border-[var(--brand-border-subtle)] bg-[var(--background)] px-4 py-3 sm:px-6 sm:py-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap items-center gap-4">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Legend
               </span>
               <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-emerald-500" />
-                <BodySmall className="text-neutral-700">
+                <span className="h-3 w-3 rounded-full bg-[var(--status-optimal)]" />
+                <BodySmall className="text-[var(--foreground)]">
                   <span className="mr-1">⭐</span>Optimal path
                 </BodySmall>
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-blue-500" />
-                <BodySmall className="text-neutral-700">Explored</BodySmall>
+                <span className="h-3 w-3 rounded-full bg-[var(--status-explored)]" />
+                <BodySmall className="text-[var(--foreground)]">
+                  Explored
+                </BodySmall>
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-red-500" />
-                <BodySmall className="text-neutral-700">
+                <span className="h-3 w-3 rounded-full bg-[var(--status-pruned)]" />
+                <BodySmall className="text-[var(--foreground)]">
                   <span className="mr-1">✕</span>Pruned
                 </BodySmall>
               </div>
             </div>
 
-            <BodySmall className="text-neutral-400">
+            <BodySmall className="text-[var(--brand-muted)]">
               Click any node in the tree to inspect its reasoning, score, and
               children.
             </BodySmall>
@@ -358,10 +364,10 @@ export default function TreeOfThoughtsPage() {
         {/* Main Content */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Tree Visualization */}
-          <div className="md:col-span-2 border border-neutral-200 bg-white">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+          <div className="md:col-span-2 border border-[var(--brand-border-subtle)] bg-[var(--background)]">
+            <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex items-center justify-between">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Thought space exploration
                 </BodySmall>
               </div>
@@ -374,20 +380,20 @@ export default function TreeOfThoughtsPage() {
           {/* Details Panel */}
           <div className="md:col-span-1">
             {selectedNode ? (
-              <div className="sticky top-4 border border-neutral-200 bg-white p-6">
+              <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
                 <div className="mb-4 flex items-start justify-between">
                   <div>
-                    <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                    <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                       Node details
                     </div>
-                    <BodySmall className="font-medium text-neutral-900">
+                    <BodySmall className="font-medium text-[var(--foreground)]">
                       {selectedNode.text}
                     </BodySmall>
                   </div>
                   <button
                     type="button"
                     onClick={() => setSelectedNode(null)}
-                    className="text-neutral-400 transition-colors hover:text-neutral-600"
+                    className="text-[var(--brand-muted)] transition-colors hover:text-[var(--foreground)]"
                     aria-label="Clear selection"
                   >
                     <svg
@@ -420,20 +426,20 @@ export default function TreeOfThoughtsPage() {
 
                   {/* Score & Depth */}
                   {selectedNode.score > 0 && (
-                    <div className="grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                      <div className="bg-neutral-50 p-3">
-                        <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                      <div className="bg-[var(--brand-surface-soft)] p-3">
+                        <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                           Confidence score
                         </div>
-                        <div className="text-xl font-medium tracking-tight text-neutral-900 sm:text-2xl">
+                        <div className="text-xl font-medium tracking-tight text-[var(--foreground)] sm:text-2xl">
                           {(selectedNode.score * 100).toFixed(0)}%
                         </div>
                       </div>
-                      <div className="bg-neutral-50 p-3">
-                        <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                      <div className="bg-[var(--brand-surface-soft)] p-3">
+                        <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                           Depth
                         </div>
-                        <div className="text-xl font-medium tracking-tight text-neutral-900 sm:text-2xl">
+                        <div className="text-xl font-medium tracking-tight text-[var(--foreground)] sm:text-2xl">
                           {selectedNode.depth}
                         </div>
                       </div>
@@ -442,11 +448,11 @@ export default function TreeOfThoughtsPage() {
 
                   {/* Reasoning */}
                   {selectedNode.reasoning && (
-                    <div className="rounded-sm border border-blue-100 bg-blue-50 p-4">
-                      <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-blue-900">
+                    <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                      <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-blue)]">
                         AI reasoning
                       </div>
-                      <BodySmall className="text-blue-900">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedNode.reasoning}
                       </BodySmall>
                     </div>
@@ -455,11 +461,11 @@ export default function TreeOfThoughtsPage() {
                   {/* Children Info */}
                   {selectedNode.children &&
                     selectedNode.children.length > 0 && (
-                      <div className="border-t border-dashed border-neutral-200 pt-3">
-                        <BodySmall className="mb-1 font-medium text-neutral-800">
+                      <div className="border-t border-dashed border-[var(--brand-border-subtle)] pt-3">
+                        <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                           Branching options
                         </BodySmall>
-                        <BodySmall className="text-neutral-600">
+                        <BodySmall className="text-[var(--brand-muted)]">
                           {selectedNode.children.length} alternative path
                           {selectedNode.children.length > 1 ? "s" : ""} explored
                           from this node.
@@ -469,12 +475,12 @@ export default function TreeOfThoughtsPage() {
                 </div>
               </div>
             ) : (
-              <div className="sticky top-4 border border-neutral-200 bg-white p-6 text-center">
+              <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6 text-center">
                 <div className="mb-3 text-3xl">🤔</div>
-                <BodySmall className="mb-1 font-medium text-neutral-900">
+                <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                   Select a node to inspect reasoning.
                 </BodySmall>
-                <BodySmall className="text-neutral-500">
+                <BodySmall className="text-[var(--brand-muted)]">
                   Nodes on the optimal path are highlighted with a star. Click
                   any node to see its local decision context.
                 </BodySmall>
@@ -484,36 +490,42 @@ export default function TreeOfThoughtsPage() {
         </div>
 
         {/* Footer Stats */}
-        <div className="mt-8 border border-neutral-200 bg-white p-6">
-          <div className="mb-4 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+        <div className="mt-8 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
+          <div className="mb-4 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
             Search space statistics
           </div>
-          <div className="grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200 sm:grid-cols-4">
-            <div className="bg-neutral-50 p-4 text-center">
-              <div className="text-xl font-medium tracking-tight text-neutral-900 sm:text-2xl">
+          <div className="grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)] sm:grid-cols-4">
+            <div className="bg-[var(--brand-surface-soft)] p-4 text-center">
+              <div className="text-xl font-medium tracking-tight text-[var(--foreground)] sm:text-2xl">
                 15
               </div>
-              <BodySmall className="text-neutral-500">Total nodes</BodySmall>
+              <BodySmall className="text-[var(--brand-muted)]">
+                Total nodes
+              </BodySmall>
             </div>
-            <div className="bg-neutral-50 p-4 text-center">
-              <div className="text-xl font-medium tracking-tight text-emerald-600 sm:text-2xl">
+            <div className="bg-[var(--brand-surface-soft)] p-4 text-center">
+              <div className="text-xl font-medium tracking-tight text-[var(--status-optimal)] sm:text-2xl">
                 5
               </div>
-              <BodySmall className="text-neutral-500">Optimal path</BodySmall>
+              <BodySmall className="text-[var(--brand-muted)]">
+                Optimal path
+              </BodySmall>
             </div>
-            <div className="bg-neutral-50 p-4 text-center">
-              <div className="text-xl font-medium tracking-tight text-red-600 sm:text-2xl">
+            <div className="bg-[var(--brand-surface-soft)] p-4 text-center">
+              <div className="text-xl font-medium tracking-tight text-[var(--status-pruned)] sm:text-2xl">
                 4
               </div>
-              <BodySmall className="text-neutral-500">
+              <BodySmall className="text-[var(--brand-muted)]">
                 Pruned branches
               </BodySmall>
             </div>
-            <div className="bg-neutral-50 p-4 text-center">
-              <div className="text-xl font-medium tracking-tight text-blue-600 sm:text-2xl">
+            <div className="bg-[var(--brand-surface-soft)] p-4 text-center">
+              <div className="text-xl font-medium tracking-tight text-[var(--status-explored)] sm:text-2xl">
                 3
               </div>
-              <BodySmall className="text-neutral-500">Max depth</BodySmall>
+              <BodySmall className="text-[var(--brand-muted)]">
+                Max depth
+              </BodySmall>
             </div>
           </div>
         </div>

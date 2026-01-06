@@ -343,11 +343,11 @@ const CONTEXT_SNAPSHOTS: ContextSnapshot[] = [
 function getItemColor(type: ContextItemType) {
   switch (type) {
     case "system":
-      return "bg-neutral-400";
+      return "bg-[var(--brand-muted)]";
     case "user-message":
       return "bg-emerald-500";
     case "assistant-message":
-      return "bg-(--brand-blue)";
+      return "bg-[var(--brand-blue)]";
     case "tool-result":
       return "bg-amber-500";
     case "memory":
@@ -355,7 +355,7 @@ function getItemColor(type: ContextItemType) {
     case "function-call":
       return "bg-rose-500";
     default:
-      return "bg-neutral-300";
+      return "bg-[var(--brand-border-subtle)]";
   }
 }
 
@@ -397,9 +397,9 @@ export default function ContextWindowPage() {
     (selectedData.totalTokens / selectedData.maxContextSize) * 100;
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="02 / Context Window"
             title="Token context timeline visualization."
@@ -415,13 +415,13 @@ export default function ContextWindowPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           {/* Context Window Visualization */}
-          <div className="border border-neutral-200 bg-white">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+          <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)]">
+            <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex items-center justify-between">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Context window evolution
                 </BodySmall>
-                <BodySmall className="text-neutral-400">
+                <BodySmall className="text-[var(--brand-muted)]">
                   Click a step to inspect context contents.
                 </BodySmall>
               </div>
@@ -443,8 +443,8 @@ export default function ContextWindowPage() {
                       }
                       className={`rounded-sm border px-3 py-1.5 text-xs font-medium transition-colors ${
                         isSelected
-                          ? "border-neutral-900 bg-neutral-900 text-white"
-                          : "border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50"
+                          ? "border-[var(--brand-surface)] bg-[var(--brand-surface)] text-[var(--foreground)]"
+                          : "border-[var(--brand-border-subtle)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--brand-surface-soft)]"
                       }`}
                     >
                       Step {snapshot.step}
@@ -460,7 +460,7 @@ export default function ContextWindowPage() {
               <div className="space-y-4">
                 {/* Max context size indicator */}
                 <div className="relative">
-                  <div className="mb-2 flex items-center justify-between text-[10px] text-neutral-500">
+                  <div className="mb-2 flex items-center justify-between text-[10px] text-[var(--brand-muted)]">
                     <span>Context Window</span>
                     <span>
                       {selectedData.totalTokens.toLocaleString()} /{" "}
@@ -468,17 +468,17 @@ export default function ContextWindowPage() {
                       {utilizationPercent.toFixed(1)}%)
                     </span>
                   </div>
-                  <div className="relative h-8 w-full border border-neutral-300 bg-neutral-100">
+                  <div className="relative h-8 w-full border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)]">
                     {/* Max size indicator */}
                     <div
-                      className="absolute inset-y-0 right-0 border-l border-dashed border-neutral-400"
+                      className="absolute inset-y-0 right-0 border-l border-dashed border-[var(--brand-border-subtle)]"
                       style={{
                         width: `${tokenToPercent(MAX_CONTEXT_SIZE)}%`,
                       }}
                     />
                     {/* Current usage */}
                     <div
-                      className="absolute inset-y-0 left-0 bg-neutral-300"
+                      className="absolute inset-y-0 left-0 bg-[var(--brand-border-subtle)]"
                       style={{
                         width: `${tokenToPercent(selectedData.totalTokens)}%`,
                       }}
@@ -496,7 +496,7 @@ export default function ContextWindowPage() {
                         width: `${tokenToPercent(selectedData.totalTokens)}%`,
                       }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center text-[9px] font-medium text-neutral-700">
+                    <div className="absolute inset-0 flex items-center justify-center text-[9px] font-medium text-[var(--foreground)]">
                       {utilizationPercent.toFixed(1)}% utilized
                     </div>
                   </div>
@@ -504,7 +504,7 @@ export default function ContextWindowPage() {
 
                 {/* Context items */}
                 <div className="space-y-2">
-                  <div className="mb-2 text-[10px] font-medium uppercase tracking-widest text-neutral-500">
+                  <div className="mb-2 text-[10px] font-medium uppercase tracking-widest text-[var(--brand-muted)]">
                     Context Contents
                   </div>
                   {selectedData.items.map((item) => {
@@ -530,20 +530,20 @@ export default function ContextWindowPage() {
                                 item.type,
                               )}`}
                             />
-                            <span className="font-medium text-neutral-700">
+                            <span className="font-medium text-[var(--foreground)]">
                               {item.label}
                             </span>
                             {!isInWindow && (
-                              <span className="rounded-sm border border-neutral-300 bg-neutral-100 px-1 text-[9px] text-neutral-500">
+                              <span className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-1 text-[9px] text-[var(--brand-muted)]">
                                 Out of window
                               </span>
                             )}
                           </div>
-                          <span className="text-neutral-500">
+                          <span className="text-[var(--brand-muted)]">
                             {item.tokenCount.toLocaleString()} tokens
                           </span>
                         </div>
-                        <div className="relative h-6 w-full border border-neutral-200 bg-neutral-50">
+                        <div className="relative h-6 w-full border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)]">
                           <div
                             className={`absolute inset-y-0 ${getItemColor(
                               item.type,
@@ -559,7 +559,7 @@ export default function ContextWindowPage() {
                               width: `${widthPercent}%`,
                             }}
                           />
-                          <div className="absolute inset-0 flex items-center px-2 text-[9px] text-neutral-600">
+                          <div className="absolute inset-0 flex items-center px-2 text-[9px] text-[var(--brand-muted)]">
                             {item.summary}
                           </div>
                         </div>
@@ -569,7 +569,7 @@ export default function ContextWindowPage() {
                 </div>
 
                 {/* Legend */}
-                <div className="mt-6 grid grid-cols-3 gap-2 border-t border-neutral-200 pt-4">
+                <div className="mt-6 grid grid-cols-3 gap-2 border-t border-[var(--brand-border-subtle)] pt-4">
                   {(
                     [
                       "system",
@@ -588,7 +588,7 @@ export default function ContextWindowPage() {
                           type,
                         )}`}
                       />
-                      <span className="text-neutral-600">
+                      <span className="text-[var(--brand-muted)]">
                         {getItemLabel(type)}
                       </span>
                     </div>
@@ -600,26 +600,26 @@ export default function ContextWindowPage() {
 
           {/* Details Panel */}
           <div className="space-y-4">
-            <div className="sticky top-4 border border-neutral-200 bg-white p-6">
+            <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
               {selectedSnapshot ? (
                 <>
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
-                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Context snapshot
                       </div>
                       <H3 className="mb-1 text-sm">
                         Step {selectedSnapshot.step} •{" "}
                         {(selectedSnapshot.timestamp / 1000).toFixed(2)}s
                       </H3>
-                      <BodySmall className="text-neutral-500">
+                      <BodySmall className="text-[var(--brand-muted)]">
                         Context window state at this execution step
                       </BodySmall>
                     </div>
                     <button
                       type="button"
                       onClick={() => setSelectedSnapshot(null)}
-                      className="text-neutral-300 transition-colors hover:text-neutral-600"
+                      className="text-[var(--brand-muted)] transition-colors hover:text-[var(--foreground)]"
                       aria-label="Clear selection"
                     >
                       <svg
@@ -638,44 +638,44 @@ export default function ContextWindowPage() {
                     </button>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Total Tokens
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedSnapshot.totalTokens.toLocaleString()}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Utilization
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {utilizationPercent.toFixed(1)}%
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="mb-3 rounded-sm border border-neutral-200 bg-neutral-50 p-4">
-                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                       Window Range
                     </div>
-                    <BodySmall className="text-neutral-700">
+                    <BodySmall className="text-[var(--foreground)]">
                       Tokens {selectedSnapshot.windowStart.toLocaleString()} -{" "}
                       {selectedSnapshot.windowEnd.toLocaleString()}
                     </BodySmall>
                   </div>
 
-                  <div className="rounded-sm border border-neutral-200 bg-neutral-50 p-4">
-                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                       Context Items
                     </div>
                     <div className="space-y-2">
                       {selectedSnapshot.items.map((item) => (
                         <div
                           key={item.id}
-                          className="flex items-start justify-between gap-2 border-b border-neutral-200 pb-2 last:border-0 last:pb-0"
+                          className="flex items-start justify-between gap-2 border-b border-[var(--brand-border-subtle)] pb-2 last:border-0 last:pb-0"
                         >
                           <div className="flex-1">
                             <div className="mb-1 flex items-center gap-2">
@@ -684,16 +684,16 @@ export default function ContextWindowPage() {
                                   item.type,
                                 )}`}
                               />
-                              <span className="text-[10px] font-medium text-neutral-800">
+                              <span className="text-[10px] font-medium text-[var(--foreground)]">
                                 {getItemLabel(item.type)}
                               </span>
                             </div>
-                            <BodySmall className="text-neutral-600">
+                            <BodySmall className="text-[var(--brand-muted)]">
                               {item.summary}
                             </BodySmall>
                           </div>
                           <div className="text-right">
-                            <BodySmall className="text-[10px] text-neutral-500">
+                            <BodySmall className="text-[10px] text-[var(--brand-muted)]">
                               {item.tokenCount.toLocaleString()}
                             </BodySmall>
                           </div>
@@ -705,10 +705,10 @@ export default function ContextWindowPage() {
               ) : (
                 <div className="text-center">
                   <div className="mb-3 text-3xl">🔍</div>
-                  <BodySmall className="mb-1 font-medium text-neutral-900">
+                  <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                     Select a step to inspect context contents.
                   </BodySmall>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Use this panel to see exactly what tokens were visible to
                     the model at each execution step, including system prompts,
                     messages, tool results, and retrieved memories.
@@ -717,22 +717,22 @@ export default function ContextWindowPage() {
               )}
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Context statistics
               </div>
-              <div className="grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+              <div className="grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {CONTEXT_SNAPSHOTS.length}
                   </div>
-                  <BodySmall className="text-neutral-500">Steps</BodySmall>
+                  <BodySmall className="text-[var(--brand-muted)]">Steps</BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {MAX_CONTEXT_SIZE.toLocaleString()}
                   </div>
-                  <BodySmall className="text-neutral-500">Max Context</BodySmall>
+                  <BodySmall className="text-[var(--brand-muted)]">Max Context</BodySmall>
                 </div>
               </div>
             </div>

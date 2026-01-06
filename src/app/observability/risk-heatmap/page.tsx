@@ -197,7 +197,7 @@ function riskLevelColor(level: RiskLevel): string {
     case "critical":
       return "bg-red-600";
     default:
-      return "bg-neutral-300";
+      return "bg-[var(--brand-border-subtle)]";
   }
 }
 
@@ -212,7 +212,7 @@ function riskLevelBg(level: RiskLevel): string {
     case "critical":
       return "bg-red-50 border-red-200";
     default:
-      return "bg-neutral-50 border-neutral-200";
+      return "bg-[var(--brand-surface-soft)] border-[var(--brand-border-subtle)]";
   }
 }
 
@@ -238,9 +238,9 @@ export default function RiskHeatmapPage() {
   const [selectedRisk, setSelectedRisk] = useState<RiskEntry | null>(null);
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="02 / Risk Heatmap"
             title="Risk assessment visualization matrix."
@@ -256,13 +256,13 @@ export default function RiskHeatmapPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           {/* Heatmap */}
-          <div className="border border-neutral-200 bg-white">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+          <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)]">
+            <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex items-center justify-between">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Risk matrix
                 </BodySmall>
-                <BodySmall className="text-neutral-400">
+                <BodySmall className="text-[var(--brand-muted)]">
                   Click any cell to inspect risk details.
                 </BodySmall>
               </div>
@@ -272,13 +272,13 @@ export default function RiskHeatmapPage() {
               <div className="min-w-[700px]">
                 {/* Header row */}
                 <div className="mb-4 grid grid-cols-[180px_repeat(5,1fr)] gap-2">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                     Operation
                   </div>
                   {RISK_CATEGORIES.map((cat) => (
                     <div
                       key={cat}
-                      className="text-center font-mono text-[10px] uppercase tracking-widest text-neutral-500"
+                      className="text-center font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]"
                     >
                       {cat.replace("-", " ")}
                     </div>
@@ -292,7 +292,7 @@ export default function RiskHeatmapPage() {
                       key={operation}
                       className="grid grid-cols-[180px_repeat(5,1fr)] gap-2"
                     >
-                      <div className="flex items-center text-xs font-medium text-neutral-900">
+                      <div className="flex items-center text-xs font-medium text-[var(--foreground)]">
                         {operation}
                       </div>
                       {RISK_CATEGORIES.map((category) => {
@@ -311,8 +311,8 @@ export default function RiskHeatmapPage() {
                             disabled={isEmpty}
                             className={`group relative flex h-12 items-center justify-center rounded-sm border transition-all duration-150 ${
                               isEmpty
-                                ? "border-neutral-100 bg-neutral-50"
-                                : `border-neutral-200 ${riskLevelColor(
+                                ? "border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)]"
+                                : `border-[var(--brand-border-subtle)] ${riskLevelColor(
                                     risk.level,
                                   )} ${riskIntensity(risk.score)} ${
                                     isSelected
@@ -338,14 +338,14 @@ export default function RiskHeatmapPage() {
                                     isSelected ? "opacity-100" : ""
                                   }`}
                                 >
-                                  <span className="text-[9px] font-medium uppercase tracking-wider text-neutral-700">
+                                  <span className="text-[9px] font-medium uppercase tracking-wider text-[var(--foreground)]">
                                     {risk.level}
                                   </span>
                                 </div>
                               </>
                             )}
                             {isEmpty && (
-                              <span className="text-[9px] text-neutral-300">
+                              <span className="text-[9px] text-[var(--brand-muted)]">
                                 —
                               </span>
                             )}
@@ -357,8 +357,8 @@ export default function RiskHeatmapPage() {
                 </div>
 
                 {/* Legend */}
-                <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-neutral-200 pt-4">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-[var(--brand-border-subtle)] pt-4">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                     Risk levels:
                   </span>
                   {(["low", "medium", "high", "critical"] as RiskLevel[]).map(
@@ -372,7 +372,7 @@ export default function RiskHeatmapPage() {
                             level,
                           )}`}
                         />
-                        <span className="capitalize text-neutral-600">
+                        <span className="capitalize text-[var(--brand-muted)]">
                           {level}
                         </span>
                       </div>
@@ -385,12 +385,12 @@ export default function RiskHeatmapPage() {
 
           {/* Details panel */}
           <div className="space-y-4">
-            <div className="sticky top-4 border border-neutral-200 bg-white p-6">
+            <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
               {selectedRisk ? (
                 <>
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
-                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Risk details
                       </div>
                       <H3 className="mb-1 text-sm">{selectedRisk.operation}</H3>
@@ -405,7 +405,7 @@ export default function RiskHeatmapPage() {
                     <button
                       type="button"
                       onClick={() => setSelectedRisk(null)}
-                      className="text-neutral-300 transition-colors hover:text-neutral-600"
+                      className="text-[var(--brand-muted)] transition-colors hover:text-[var(--foreground)]"
                       aria-label="Clear selection"
                     >
                       <svg
@@ -424,47 +424,47 @@ export default function RiskHeatmapPage() {
                     </button>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Category
                       </div>
-                      <BodySmall className="capitalize text-neutral-800">
+                      <BodySmall className="capitalize text-[var(--foreground)]">
                         {selectedRisk.category.replace("-", " ")}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Risk Score
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedRisk.score}/100
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="mb-3 rounded-sm border border-neutral-200 bg-neutral-50 p-4">
-                    <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                    <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                       Description
                     </div>
-                    <BodySmall className="text-neutral-700">
+                    <BodySmall className="text-[var(--foreground)]">
                       {selectedRisk.description}
                     </BodySmall>
                   </div>
 
                   {selectedRisk.mitigation && (
-                    <div className="rounded-sm border border-emerald-200 bg-emerald-50 p-4">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-emerald-700">
+                    <div className="rounded-sm border border-[var(--status-optimal-border)] bg-[var(--status-optimal-soft)] p-4">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--status-optimal)]">
                         Mitigation
                       </div>
-                      <BodySmall className="text-emerald-800">
+                      <BodySmall className="text-[var(--status-optimal)]">
                         {selectedRisk.mitigation}
                       </BodySmall>
                     </div>
                   )}
 
                   {selectedRisk.lastAssessed && (
-                    <div className="mt-3 text-[10px] text-neutral-400">
+                    <div className="mt-3 text-[10px] text-[var(--brand-muted)]">
                       Last assessed: {selectedRisk.lastAssessed}
                     </div>
                   )}
@@ -472,10 +472,10 @@ export default function RiskHeatmapPage() {
               ) : (
                 <div className="text-center">
                   <div className="mb-3 text-3xl">⚠️</div>
-                  <BodySmall className="mb-1 font-medium text-neutral-900">
+                  <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                     Select a risk cell to inspect details.
                   </BodySmall>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Use this panel to view risk descriptions, mitigation
                     strategies, and assessment dates for each operation and
                     category.
@@ -484,26 +484,26 @@ export default function RiskHeatmapPage() {
               )}
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Risk summary
               </div>
-              <div className="grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+              <div className="grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {RISK_DATA.length}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Risk Entries
                   </BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-red-600">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--status-pruned)]">
                     {
                       RISK_DATA.filter((r) => r.level === "critical").length
                     }
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Critical
                   </BodySmall>
                 </div>

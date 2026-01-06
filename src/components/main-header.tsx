@@ -81,14 +81,14 @@ export function MainHeader() {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-md supports-backdrop-filter:bg-white/60">
+    <nav className="fixed top-0 z-50 w-full border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)]/80 backdrop-blur-md supports-backdrop-filter:bg-[var(--brand-surface-soft)]/60">
       <Container>
         {/* Header row */}
         <div className="flex h-14 items-stretch justify-between">
           <div className="flex h-full items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
-              <div className="h-3 w-3 rounded-sm bg-(--brand-blue)" />
-              <span className="text-sm font-semibold tracking-tight text-neutral-900">
+              <div className="h-3 w-3 rounded-sm bg-[var(--brand-blue)]" />
+              <span className="text-sm font-semibold tracking-tight text-[var(--foreground)]">
                 AgentVis
               </span>
             </Link>
@@ -96,7 +96,7 @@ export function MainHeader() {
 
           <div className="flex h-full items-center gap-4">
             {/* Desktop nav */}
-            <div className="hidden h-full items-stretch gap-8 text-xs font-medium tracking-wide text-neutral-500 md:flex">
+            <div className="hidden h-full items-stretch gap-8 text-xs font-medium tracking-wide text-[var(--brand-border-strong)] md:flex">
               {NAV_SECTIONS.map((section) => (
                 <div
                   key={section.id}
@@ -106,20 +106,22 @@ export function MainHeader() {
                     href={section.href}
                     className={`px-2 py-1 transition-colors ${
                       isSectionActive(section)
-                        ? "bg-neutral-900 text-white"
-                        : "hover:text-neutral-900"
+                        ? "bg-[var(--background)] text-[var(--foreground)]"
+                        : "hover:text-[var(--foreground)]"
                     }`}
                   >
                     {section.label}
                   </Link>
-                  <div className="pointer-events-none absolute left-0 top-full w-64 origin-top overflow-hidden border border-neutral-200 bg-white shadow-lg transition-all duration-200 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-y-100 opacity-0 scale-y-95">
-                    <div className="flex flex-col py-2 text-xs text-neutral-600">
+                  <div className="pointer-events-none absolute left-0 top-full w-64 origin-top overflow-hidden border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] shadow-lg transition-all duration-200 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-y-100 opacity-0 scale-y-95">
+                    <div className="flex flex-col py-2 text-xs text-[var(--brand-border-strong)]">
                       {section.items.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className={`px-3 py-1.5 text-left hover:bg-neutral-50 hover:text-neutral-900 ${
-                            isItemActive(item) ? "bg-neutral-100" : ""
+                          className={`px-3 py-1.5 text-left hover:bg-[var(--brand-surface)] hover:text-[var(--foreground)] ${
+                            isItemActive(item)
+                              ? "bg-[var(--brand-surface)]"
+                              : ""
                           }`}
                         >
                           {item.label}
@@ -136,24 +138,24 @@ export function MainHeader() {
               id="main-nav-mobile"
               className="relative flex h-full items-center md:hidden"
             >
-              <summary className="flex h-8 w-8 cursor-pointer list-none flex-col items-center justify-center gap-1 border border-neutral-300 bg-white text-neutral-700">
-                <span className="h-px w-4 bg-neutral-800" />
-                <span className="h-px w-4 bg-neutral-800" />
-                <span className="h-px w-4 bg-neutral-800" />
+              <summary className="flex h-8 w-8 cursor-pointer list-none flex-col items-center justify-center gap-1 border border-[var(--brand-border-strong)] bg-[var(--brand-surface-soft)] text-[var(--brand-muted)]">
+                <span className="h-px w-4 bg-[var(--brand-border-strong)]" />
+                <span className="h-px w-4 bg-[var(--brand-border-strong)]" />
+                <span className="h-px w-4 bg-[var(--brand-border-strong)]" />
               </summary>
-              <div className="absolute right-0 top-full w-56 origin-top border border-neutral-200 bg-white text-xs text-neutral-700 shadow-lg">
+              <div className="absolute right-0 top-full w-56 origin-top border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] text-xs text-[var(--brand-muted)] shadow-lg">
                 {NAV_SECTIONS.map((section) => (
                   <div
                     key={section.id}
-                    className="border-b border-neutral-100 last:border-b-0"
+                    className="border-b border-[var(--brand-border-subtle)] last:border-b-0"
                   >
                     <Link
                       href={section.href}
                       onClick={handleMobileNavClick}
                       className={`block px-4 pt-2 text-[11px] font-semibold tracking-wide ${
                         isSectionActive(section)
-                          ? "bg-neutral-900 text-white"
-                          : "text-neutral-900"
+                          ? "bg-[var(--background)] text-[var(--foreground)]"
+                          : "text-[var(--foreground)]"
                       }`}
                     >
                       {section.label}
@@ -164,8 +166,10 @@ export function MainHeader() {
                           key={item.href}
                           href={item.href}
                           onClick={handleMobileNavClick}
-                          className={`block px-6 py-1 text-[11px] text-neutral-600 hover:text-neutral-900 ${
-                            isItemActive(item) ? "bg-neutral-100" : ""
+                          className={`block px-6 py-1 text-[11px] text-[var(--brand-border-strong)] hover:text-[var(--foreground)] ${
+                            isItemActive(item)
+                              ? "bg-[var(--brand-surface)]"
+                              : ""
                           }`}
                         >
                           {item.label}

@@ -230,7 +230,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-2",
     type: "smoothstep",
     label: "developed",
-    style: { stroke: "#8b5cf6", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-1-3",
@@ -238,7 +238,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-3",
     type: "smoothstep",
     label: "employs",
-    style: { stroke: "#8b5cf6", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-2-4",
@@ -246,7 +246,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-4",
     type: "smoothstep",
     label: "based on",
-    style: { stroke: "#10b981", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-2-5",
@@ -254,7 +254,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-5",
     type: "smoothstep",
     label: "released at",
-    style: { stroke: "#f59e0b", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-1-6",
@@ -262,7 +262,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-6",
     type: "smoothstep",
     label: "partnered with",
-    style: { stroke: "#8b5cf6", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-2-7",
@@ -270,7 +270,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-7",
     type: "smoothstep",
     label: "powers",
-    style: { stroke: "#10b981", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-4-8",
@@ -278,7 +278,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-8",
     type: "smoothstep",
     label: "includes",
-    style: { stroke: "#10b981", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-1-9",
@@ -286,7 +286,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-9",
     type: "smoothstep",
     label: "published",
-    style: { stroke: "#ef4444", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-6-10",
@@ -294,7 +294,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-10",
     type: "smoothstep",
     label: "led by",
-    style: { stroke: "#8b5cf6", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
   {
     id: "e-3-6",
@@ -302,7 +302,7 @@ const INITIAL_EDGES: Edge[] = [
     target: "entity-6",
     type: "smoothstep",
     label: "collaborates with",
-    style: { stroke: "#3b82f6", strokeWidth: 2 },
+    style: { stroke: "var(--brand-blue)", strokeWidth: 2 },
   },
 ];
 
@@ -315,28 +315,28 @@ function KnowledgeEntityNode({
   return (
     <div
       className={`rounded-sm border-2 ${config.borderColor} ${config.color} p-3 shadow-sm transition-all ${
-        selected ? "ring-2 ring-offset-2 ring-offset-white ring-neutral-400" : ""
+        selected ? "ring-2 ring-offset-2 ring-offset-[var(--background)] ring-[var(--brand-border-subtle)]" : ""
       }`}
       style={{ minWidth: "180px", maxWidth: "220px" }}
     >
       <Handle type="target" position={Position.Top} />
-      <div className="mb-2 flex items-start justify-between gap-2">
-        <div className="flex items-center gap-1.5">
-          <span className="text-base">{config.icon}</span>
-          <div>
-            <div className="text-sm font-semibold text-neutral-900">
-              {data.label}
-            </div>
-            <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">
-              {data.type}
+        <div className="mb-2 flex items-start justify-between gap-2">
+          <div className="flex items-center gap-1.5">
+            <span className="text-base">{config.icon}</span>
+            <div>
+              <div className="text-sm font-semibold text-[var(--foreground)]">
+                {data.label}
+              </div>
+              <div className="text-[10px] font-mono uppercase tracking-widest text-[var(--brand-muted)]">
+                {data.type}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="mb-2 text-[10px] text-neutral-600 line-clamp-2">
-        {data.description}
-      </div>
-      <div className="flex items-center justify-between border-t border-neutral-200 pt-2 text-[9px] text-neutral-500">
+        <div className="mb-2 text-[10px] text-[var(--brand-muted)] line-clamp-2">
+          {data.description}
+        </div>
+        <div className="flex items-center justify-between border-t border-[var(--brand-border-subtle)] pt-2 text-[9px] text-[var(--brand-muted)]">
         <span>Confidence: {(data.confidence * 100).toFixed(0)}%</span>
         <span>{data.relationshipCount} rels</span>
       </div>
@@ -390,9 +390,9 @@ export default function KnowledgeGraphPage() {
   }, [nodes, edges]);
 
   return (
-    <section className="relative z-10 bg-white py-16 sm:py-24">
+    <section className="relative z-10 bg-[var(--background)] py-16 sm:py-24">
       <Container>
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="03 / Knowledge Graph"
             title="Entity & relationship graph visualization."
@@ -407,13 +407,13 @@ export default function KnowledgeGraphPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           {/* Graph Visualization */}
-          <div className="border border-neutral-200 bg-white">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-4 py-3 sm:px-6">
+          <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)]">
+            <div className="border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-4 py-3 sm:px-6">
               <div className="flex items-center justify-between">
-                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                <BodySmall className="font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Knowledge Graph
                 </BodySmall>
-                <BodySmall className="text-neutral-400">
+                <BodySmall className="text-[var(--brand-muted)]">
                   Drag nodes • Click to inspect • Zoom to explore
                 </BodySmall>
               </div>
@@ -440,9 +440,9 @@ export default function KnowledgeGraphPage() {
                   size={1}
                   color="var(--brand-grid-line)"
                 />
-                <Controls className="rounded-sm border border-neutral-200 bg-white shadow-sm" />
+                <Controls className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] shadow-sm" />
                 <MiniMap
-                  className="rounded-sm border border-neutral-200 bg-white"
+                  className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)]"
                   nodeColor={(node) => {
                     const config =
                       ENTITY_TYPE_CONFIG[(node.data as EntityNodeData).type];
@@ -456,23 +456,23 @@ export default function KnowledgeGraphPage() {
 
           {/* Details Panel */}
           <div className="space-y-4">
-            <div className="sticky top-4 border border-neutral-200 bg-white p-6">
+            <div className="sticky top-4 border border-[var(--brand-border-subtle)] bg-[var(--background)] p-6">
               {selectedNode ? (
                 <>
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
-                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                      <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Entity Details
                       </div>
                       <H3 className="mb-1 text-sm">{selectedNode.data.label}</H3>
-                      <BodySmall className="text-neutral-500">
+                      <BodySmall className="text-[var(--brand-muted)]">
                         {selectedNode.data.description}
                       </BodySmall>
                     </div>
                     <button
                       type="button"
                       onClick={() => setSelectedNode(null)}
-                      className="text-neutral-300 transition-colors hover:text-neutral-600"
+                      className="text-[var(--brand-muted)] transition-colors hover:text-[var(--foreground)]"
                       aria-label="Clear selection"
                     >
                       <svg
@@ -491,65 +491,65 @@ export default function KnowledgeGraphPage() {
                     </button>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Type
                       </div>
-                      <BodySmall className="text-neutral-800 capitalize">
+                      <BodySmall className="text-[var(--foreground)] capitalize">
                         {selectedNode.data.type}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Confidence
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {(selectedNode.data.confidence * 100).toFixed(0)}%
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         First Seen
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedNode.data.firstSeen}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Last Updated
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedNode.data.lastUpdated}
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="mb-3 grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="mb-3 grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Sources
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedNode.data.sourceCount}
                       </BodySmall>
                     </div>
-                    <div className="bg-neutral-50 p-3">
-                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                    <div className="bg-[var(--brand-surface-soft)] p-3">
+                      <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                         Relationships
                       </div>
-                      <BodySmall className="text-neutral-800">
+                      <BodySmall className="text-[var(--foreground)]">
                         {selectedNode.data.relationshipCount}
                       </BodySmall>
                     </div>
                   </div>
 
-                  <div className="rounded-sm border border-neutral-200 bg-neutral-50 p-4">
-                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+                  <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-4">
+                    <div className="mb-2 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                       Connected Entities
                     </div>
                     <div className="space-y-1">
@@ -571,12 +571,12 @@ export default function KnowledgeGraphPage() {
                           return (
                             <div
                               key={edge.id}
-                              className="flex items-center justify-between border-b border-neutral-200 pb-1 text-[10px] last:border-0 last:pb-0"
+                              className="flex items-center justify-between border-b border-[var(--brand-border-subtle)] pb-1 text-[10px] last:border-0 last:pb-0"
                             >
-                              <span className="text-neutral-700">
+                              <span className="text-[var(--foreground)]">
                                 {connectedNode.data.label}
                               </span>
-                              <span className="rounded-sm border border-neutral-300 bg-white px-1.5 py-0.5 text-[9px] text-neutral-500">
+                              <span className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] px-1.5 py-0.5 text-[9px] text-[var(--brand-muted)]">
                                 {edge.label}
                               </span>
                             </div>
@@ -588,10 +588,10 @@ export default function KnowledgeGraphPage() {
               ) : (
                 <div className="text-center">
                   <div className="mb-3 text-3xl">🔗</div>
-                  <BodySmall className="mb-1 font-medium text-neutral-900">
+                  <BodySmall className="mb-1 font-medium text-[var(--foreground)]">
                     Select an entity to inspect details.
                   </BodySmall>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Click any node in the graph to see its properties, sources,
                     relationships, and how it connects to other entities in your
                     knowledge base.
@@ -600,38 +600,38 @@ export default function KnowledgeGraphPage() {
               )}
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Graph Statistics
               </div>
-              <div className="grid grid-cols-2 gap-px border border-neutral-200 bg-neutral-200">
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+              <div className="grid grid-cols-2 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)]">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {graphStats.totalEntities}
                   </div>
-                  <BodySmall className="text-neutral-500">Entities</BodySmall>
+                  <BodySmall className="text-[var(--brand-muted)]">Entities</BodySmall>
                 </div>
-                <div className="bg-neutral-50 p-3 text-center">
-                  <div className="text-xl font-medium tracking-tight text-neutral-900">
+                <div className="bg-[var(--brand-surface-soft)] p-3 text-center">
+                  <div className="text-xl font-medium tracking-tight text-[var(--foreground)]">
                     {graphStats.totalRelationships}
                   </div>
-                  <BodySmall className="text-neutral-500">
+                  <BodySmall className="text-[var(--brand-muted)]">
                     Relationships
                   </BodySmall>
                 </div>
               </div>
-              <div className="mt-2 rounded-sm border border-neutral-200 bg-neutral-50 p-3">
-                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-neutral-500">
+              <div className="mt-2 rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-3">
+                <div className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--brand-muted)]">
                   Average Confidence
                 </div>
-                <BodySmall className="text-neutral-800">
+                <BodySmall className="text-[var(--foreground)]">
                   {(graphStats.avgConfidence * 100).toFixed(1)}%
                 </BodySmall>
               </div>
             </div>
 
-            <div className="border border-neutral-200 bg-white p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            <div className="border border-[var(--brand-border-subtle)] bg-[var(--background)] p-4">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[var(--brand-muted)]">
                 Entity Types
               </div>
               <div className="space-y-1">
@@ -640,13 +640,13 @@ export default function KnowledgeGraphPage() {
                   return (
                     <div
                       key={type}
-                      className="flex items-center justify-between border-b border-neutral-200 pb-1 text-[10px] last:border-0 last:pb-0"
+                      className="flex items-center justify-between border-b border-[var(--brand-border-subtle)] pb-1 text-[10px] last:border-0 last:pb-0"
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-sm">{config.icon}</span>
-                        <span className="capitalize text-neutral-700">{type}</span>
+                        <span className="capitalize text-[var(--foreground)]">{type}</span>
                       </div>
-                      <span className="text-neutral-500">{count}</span>
+                      <span className="text-[var(--brand-muted)]">{count}</span>
                     </div>
                   );
                 })}

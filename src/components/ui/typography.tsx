@@ -14,7 +14,7 @@ export function Eyebrow({ className = "", ...props }: EyebrowProps) {
 
 export function H1({ className = "", ...props }: HeadingProps) {
   const classes =
-    "text-3xl font-medium tracking-tighter text-neutral-900 leading-[1.1] sm:text-5xl md:text-7xl" +
+    "text-3xl font-medium tracking-tighter text-[var(--brand-accent)] leading-[1.1] sm:text-5xl md:text-7xl" +
     (className ? ` ${className}` : "");
 
   return <h1 {...props} className={classes} />;
@@ -22,7 +22,7 @@ export function H1({ className = "", ...props }: HeadingProps) {
 
 export function H2({ className = "", ...props }: HeadingProps) {
   const classes =
-    "text-2xl font-medium tracking-tighter text-neutral-900 sm:text-3xl" +
+    "text-2xl font-medium tracking-tighter text-[var(--brand-accent)] sm:text-3xl" +
     (className ? ` ${className}` : "");
 
   return <h2 {...props} className={classes} />;
@@ -30,7 +30,7 @@ export function H2({ className = "", ...props }: HeadingProps) {
 
 export function H3({ className = "", ...props }: HeadingProps) {
   const classes =
-    "text-base font-medium tracking-tight text-neutral-900 sm:text-lg" +
+    "text-base font-medium tracking-tight text-[var(--brand-accent)] sm:text-lg" +
     (className ? ` ${className}` : "");
 
   return <h3 {...props} className={classes} />;
@@ -38,7 +38,7 @@ export function H3({ className = "", ...props }: HeadingProps) {
 
 export function Body({ className = "", ...props }: BodyProps) {
   const classes =
-    "text-sm font-light leading-relaxed text-neutral-500 md:text-base" +
+    "text-sm font-light leading-relaxed text-[var(--brand-muted)] md:text-base" +
     (className ? ` ${className}` : "");
 
   return <p {...props} className={classes} />;
@@ -46,7 +46,7 @@ export function Body({ className = "", ...props }: BodyProps) {
 
 export function BodySmall({ className = "", ...props }: BodyProps) {
   const classes =
-    "text-xs font-light leading-relaxed text-neutral-500 sm:text-sm" +
+    "text-xs font-light leading-relaxed text-[var(--brand-muted)] sm:text-sm" +
     (className ? ` ${className}` : "");
 
   return <p {...props} className={classes} />;

@@ -22,9 +22,12 @@ export function Methodology() {
   ];
 
   return (
-    <section id="process" className="relative z-10 bg-white py-16 sm:py-24">
+    <section
+      id="process"
+      className="relative z-10 bg-[var(--brand-surface-soft)] py-16 sm:py-24"
+    >
       <Container>
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader
             eyebrow="Our Methodology"
             title="Trace. Replay. Resolve."
@@ -35,13 +38,13 @@ export function Methodology() {
           </BodySmall>
         </div>
 
-        <div className="grid grid-cols-1 gap-px border border-neutral-200 bg-neutral-200 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)] md:grid-cols-3">
           {items.map((item) => (
             <div
               key={item.label}
-              className="bg-white p-6 transition-colors duration-300 hover:bg-neutral-50 sm:p-10"
+              className="bg-[var(--brand-surface-soft)] p-6 transition-colors duration-300 hover:bg-[var(--brand-surface)] sm:p-10"
             >
-              <div className="mb-4 inline-block rounded-sm border border-neutral-200 bg-neutral-50 pt-1 pb-1 pr-2 pl-2 font-mono text-xs text-neutral-500 sm:mb-6">
+              <div className="mb-4 inline-block rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface)] pt-1 pb-1 pr-2 pl-2 font-mono text-xs text-[var(--brand-border-strong)] sm:mb-6">
                 {item.label}
               </div>
               <H3 className="mb-3">{item.title}</H3>

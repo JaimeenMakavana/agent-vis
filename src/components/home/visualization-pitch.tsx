@@ -64,7 +64,7 @@ export function VisualizationPitch() {
   return (
     <>
       {/* Problem Section */}
-      <section className="relative bg-neutral-50 py-16 sm:py-24">
+      <section className="relative bg-[var(--brand-surface-soft)] py-16 sm:py-24">
         <Container>
           <div className="mb-12 sm:mb-16">
             <SectionHeader
@@ -84,12 +84,12 @@ export function VisualizationPitch() {
             {PROBLEMS.map((problem, index) => (
               <div
                 key={problem.title}
-                className="group relative border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-neutral-300 hover:shadow-sm sm:p-8"
+                className="group relative border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] p-6 transition-all duration-300 hover:border-[var(--brand-border-strong)] hover:shadow-sm sm:p-8"
               >
                 <div className="mb-4 text-3xl">{problem.icon}</div>
                 <H3 className="mb-3">{problem.title}</H3>
                 <Body>{problem.description}</Body>
-                <div className="absolute -right-[1px] -top-[1px] h-2 w-2 bg-neutral-200 transition-colors group-hover:bg-neutral-300" />
+                <div className="absolute -right-[1px] -top-[1px] h-2 w-2 bg-[var(--brand-border-subtle)] transition-colors group-hover:bg-[var(--brand-border-strong)]" />
               </div>
             ))}
           </div>
@@ -97,9 +97,9 @@ export function VisualizationPitch() {
       </section>
 
       {/* Solution Section */}
-      <section className="relative bg-white py-16 sm:py-24">
+      <section className="relative bg-[var(--brand-surface-soft)] py-16 sm:py-24">
         <Container>
-          <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-neutral-200 pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
+          <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
             <SectionHeader
               eyebrow="The Solution"
               title="Visualization Capabilities"
@@ -113,13 +113,13 @@ export function VisualizationPitch() {
             />
           </div>
 
-          <div className="grid grid-cols-1 gap-px border border-neutral-200 bg-neutral-200 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-px border border-[var(--brand-border-subtle)] bg-[var(--brand-border-subtle)] md:grid-cols-2">
             {SOLUTIONS.map((solution) => (
               <div
                 key={solution.label}
-                className="bg-white p-6 transition-colors duration-300 hover:bg-neutral-50 sm:p-10"
+                className="bg-[var(--brand-surface-soft)] p-6 transition-colors duration-300 hover:bg-[var(--brand-surface)] sm:p-10"
               >
-                <div className="mb-4 inline-block rounded-sm border border-neutral-200 bg-neutral-50 pt-1 pb-1 pr-2 pl-2 font-mono text-xs text-neutral-500 sm:mb-6">
+                <div className="mb-4 inline-block rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface)] pt-1 pb-1 pr-2 pl-2 font-mono text-xs text-[var(--brand-border-strong)] sm:mb-6">
                   {solution.label}
                 </div>
                 <H3 className="mb-3">{solution.title}</H3>
@@ -128,7 +128,7 @@ export function VisualizationPitch() {
                   {solution.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="inline-block rounded-sm border border-neutral-200 bg-neutral-50 px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-neutral-600"
+                      className="inline-block rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface)] px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-[var(--brand-border-strong)]"
                     >
                       {skill}
                     </span>
