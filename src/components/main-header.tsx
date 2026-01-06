@@ -69,10 +69,12 @@ export function MainHeader() {
         {/* Header row */}
         <div className="flex h-14 items-stretch justify-between">
           <div className="flex h-full items-center gap-3">
-            <div className="h-3 w-3 rounded-sm bg-(--brand-blue)" />
-            <span className="text-sm font-semibold tracking-tight text-neutral-900">
-              AgentVis
-            </span>
+            <Link href="/" className="flex items-center gap-3">
+              <div className="h-3 w-3 rounded-sm bg-(--brand-blue)" />
+              <span className="text-sm font-semibold tracking-tight text-neutral-900">
+                AgentVis
+              </span>
+            </Link>
           </div>
 
           <div className="flex h-full items-center gap-4">

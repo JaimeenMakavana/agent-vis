@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/hero";
 import { ScrollingLogos } from "@/components/home/scrolling-logos";
+import { VisualizationPitch } from "@/components/home/visualization-pitch";
 import { OptimizationCalculator } from "@/components/home/optimization-calculator";
 import { Methodology } from "@/components/home/methodology";
 import { PerformanceStats } from "@/components/home/performance-stats";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <Hero />
       <ScrollingLogos />
+      <VisualizationPitch />
       <OptimizationCalculator />
       <Methodology />
       <PerformanceStats />

@@ -63,18 +63,6 @@ export function Hero() {
                 START MONITORING
               </a>
             </PrimaryCtaFrame>
-            <PrimaryCtaFrame
-              tone="light"
-              className="w-full transition-all hover:from-neutral-300 hover:to-neutral-400 sm:w-auto"
-            >
-              <a
-                href="#audit"
-                className="flex h-full w-full items-center justify-center gap-2 rounded-[1px] bg-white/90 pt-3.5 pb-3.5 pr-6 pl-6 text-center text-xs font-medium text-neutral-600 backdrop-blur-sm transition-colors hover:text-black"
-              >
-                <span className="h-3 w-3 rounded-sm border border-neutral-400" />
-                VIEW DOCUMENTATION
-              </a>
-            </PrimaryCtaFrame>
           </div>
         </div>
       </Container>
