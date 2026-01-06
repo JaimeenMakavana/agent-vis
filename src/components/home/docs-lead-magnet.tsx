@@ -9,11 +9,11 @@ export function DocsLeadMagnet() {
   return (
     <section
       id="audit"
-      className="relative z-10 border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] py-16 sm:py-24"
+      className="relative z-10 border-b border-[var(--brand-border-subtle)]  py-16 sm:py-24"
     >
       <Container size="md">
         <div className="rounded-sm bg-linear-to-b from-[var(--brand-border-subtle)] to-[var(--brand-border-strong)] p-px shadow-sm">
-          <div className="rounded-[1px] bg-[var(--brand-surface-soft)] p-6 sm:p-8 md:p-12">
+          <div className="rounded-sm bg-[var(--brand-surface-soft)] p-6 sm:p-8 md:p-12">
             <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
               <div className="flex-1">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[var(--brand-blue-soft)]/30 bg-[var(--brand-blue-soft)]/10 px-2 py-1 sm:mb-6">

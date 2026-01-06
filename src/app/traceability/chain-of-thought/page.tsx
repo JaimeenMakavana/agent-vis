@@ -33,49 +33,49 @@ const TOOL_TYPES: ToolType[] = [
     id: "input",
     label: "Input",
     type: "Text",
-    color: "bg-[var(--light-blue-50)] border-[var(--light-blue-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue)]",
   },
   {
     id: "output",
     label: "Output",
     type: "Text",
-    color: "bg-[var(--light-green-50)] border-[var(--light-green-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue-soft)]",
   },
   {
     id: "memory",
     label: "Chat Memory",
     type: "Token Buffer",
-    color: "bg-[var(--light-purple-50)] border-[var(--light-purple-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue)]",
   },
   {
     id: "kb",
     label: "Knowledge Base",
     type: "RAG",
-    color: "bg-[var(--light-amber-50)] border-[var(--light-amber-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue-soft)]",
   },
   {
     id: "llm",
     label: "LLM",
     type: "GPT-4",
-    color: "bg-[var(--light-rose-50)] border-[var(--light-rose-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue)]",
   },
   {
     id: "tool",
     label: "Tool",
     type: "Function",
-    color: "bg-[var(--light-cyan-50)] border-[var(--light-cyan-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue-soft)]",
   },
   {
     id: "transform",
     label: "Transform",
     type: "Processor",
-    color: "bg-[var(--light-indigo-50)] border-[var(--light-indigo-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue)]",
   },
   {
     id: "condition",
     label: "Condition",
     type: "Router",
-    color: "bg-[var(--light-orange-50)] border-[var(--light-orange-200)]",
+    color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue-soft)]",
   },
 ];
 
@@ -94,7 +94,7 @@ const INITIAL_NODES: Node<PipelineNodeData>[] = [
     data: {
       label: "User Input",
       type: "Text",
-      color: "bg-[var(--light-blue-50)] border-[var(--light-blue-200)]",
+      color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue)]",
       description: "Raw user question or instruction entering the system.",
     },
   },
@@ -105,7 +105,7 @@ const INITIAL_NODES: Node<PipelineNodeData>[] = [
     data: {
       label: "Chat Memory",
       type: "Token Buffer",
-      color: "bg-[var(--light-purple-50)] border-[var(--light-purple-200)]",
+      color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue)]",
       description: "Short‑term conversation window for recent messages.",
     },
   },
@@ -116,7 +116,7 @@ const INITIAL_NODES: Node<PipelineNodeData>[] = [
     data: {
       label: "Knowledge Base",
       type: "RAG",
-      color: "bg-[var(--light-amber-50)] border-[var(--light-amber-200)]",
+      color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue-soft)]",
       description: "Long‑term documents and embeddings queried via RAG.",
     },
   },
@@ -127,7 +127,7 @@ const INITIAL_NODES: Node<PipelineNodeData>[] = [
     data: {
       label: "LLM Orchestrator",
       type: "GPT-4",
-      color: "bg-[var(--light-rose-50)] border-[var(--light-rose-200)]",
+      color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue)]",
       description:
         "Core reasoning step combining input, memory, and retrieved context.",
     },
@@ -139,7 +139,7 @@ const INITIAL_NODES: Node<PipelineNodeData>[] = [
     data: {
       label: "Tools / APIs",
       type: "Function",
-      color: "bg-[var(--light-cyan-50)] border-[var(--light-cyan-200)]",
+      color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue-soft)]",
       description: "External tools (search, DB, APIs) invoked by the agent.",
     },
   },
@@ -150,7 +150,7 @@ const INITIAL_NODES: Node<PipelineNodeData>[] = [
     data: {
       label: "Final Output",
       type: "Text",
-      color: "bg-[var(--light-green-50)] border-[var(--light-green-200)]",
+      color: "bg-[var(--brand-surface-soft)] border-[var(--brand-blue-soft)]",
       description: "Response returned to the user or downstream system.",
     },
   },
@@ -415,23 +415,37 @@ export default function InteractiveToolsCanvas() {
                 color="var(--brand-grid-line)"
               />
               <Controls className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] shadow-sm md:!bottom-4 md:!left-4" />
-              <MiniMap
-                className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] shadow-sm md:!bottom-4 md:!right-4"
-                nodeColor={(node: Node<PipelineNodeData>) => {
-                  const colorMap: Record<string, string> = {
-                    "bg-[var(--light-blue-50)]": "var(--light-blue-100)",
-                    "bg-[var(--light-green-50)]": "var(--light-green-100)",
-                    "bg-[var(--light-purple-50)]": "var(--light-purple-100)",
-                    "bg-[var(--light-amber-50)]": "var(--light-amber-100)",
-                    "bg-[var(--light-rose-50)]": "var(--light-rose-100)",
-                    "bg-[var(--light-cyan-50)]": "var(--light-cyan-100)",
-                    "bg-[var(--light-indigo-50)]": "var(--light-indigo-100)",
-                    "bg-[var(--light-orange-50)]": "var(--light-orange-100)",
-                  };
-                  const colorKey = node.data?.color ?? "";
-                  return colorMap[colorKey] ?? "var(--light-neutral-100)";
-                }}
-              />
+              <Panel
+                position="bottom-right"
+                className="!bottom-4 !right-4 flex flex-col items-end gap-1"
+              >
+                <MiniMap
+                  className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--foreground)] shadow-sm"
+                  style={{
+                    backgroundColor: "var(--foreground)",
+                  }}
+                  nodeColor={(node: Node<PipelineNodeData>) => {
+                    const colorMap: Record<string, string> = {
+                      "bg-[var(--light-blue-50)]": "#3b82f6",
+                      "bg-[var(--light-green-50)]": "#22c55e",
+                      "bg-[var(--light-purple-50)]": "#8b5cf6",
+                      "bg-[var(--light-amber-50)]": "#f59e0b",
+                      "bg-[var(--light-rose-50)]": "#ec4899",
+                      "bg-[var(--light-cyan-50)]": "#06b6d4",
+                      "bg-[var(--light-indigo-50)]": "#6366f1",
+                      "bg-[var(--light-orange-50)]": "#f97316",
+                    };
+                    const colorKey = node.data?.color ?? "";
+                    return colorMap[colorKey] ?? "#6b7280";
+                  }}
+                  maskColor="rgba(0, 0, 0, 0.1)"
+                />
+                <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-2 py-1">
+                  <span className="font-mono text-[9px] uppercase tracking-wide text-[var(--foreground)]">
+                    React Flow
+                  </span>
+                </div>
+              </Panel>
 
               <Panel
                 position="top-right"

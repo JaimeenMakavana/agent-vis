@@ -1,11 +1,14 @@
 export function PerformanceStats() {
   return (
-    <section className="relative z-10 border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] pt-16 pb-16 sm:py-24">
+    <section className="relative z-10 border-b border-[var(--brand-border-subtle)] pt-16 pb-16 sm:py-24">
       <div className="relative z-10 mr-auto ml-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-12 flex flex-col items-start justify-between gap-6 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-10 sm:pb-8 lg:flex-row">
           <h2 className="max-w-2xl text-2xl font-medium tracking-tight text-[var(--foreground)] leading-[1.1] sm:text-3xl md:text-4xl">
             Powering the next generation of{" "}
-            <span className="text-[var(--brand-muted)]">autonomous software</span>.
+            <span className="text-[var(--brand-muted)]">
+              autonomous software
+            </span>
+            .
           </h2>
           <a
             href="#contact"
@@ -133,6 +136,3 @@ export function PerformanceStats() {
     </section>
   );
 }
-
-
-

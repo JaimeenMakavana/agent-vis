@@ -60,7 +60,7 @@ export function Hero() {
             <PrimaryCtaFrame tone="dark" className="w-full sm:w-auto">
               <a
                 href="#contact"
-                className="block h-full w-full rounded-[1px] bg-[var(--background)] pt-3.5 pb-3.5 pr-6 pl-6 text-center text-xs font-semibold tracking-wide text-[var(--foreground)] transition-colors hover:bg-[var(--brand-surface)]"
+                className="block h-full w-full rounded-[1px] bg-[var(--background)] pt-3.5 pb-3.5 pr-6 pl-6 text-center text-xs font-semibold rounded-sm tracking-wide text-[var(--foreground)] transition-colors hover:bg-[var(--brand-surface)]"
               >
                 START MONITORING
               </a>
@@ -73,7 +73,7 @@ export function Hero() {
                 href="https://github.com/JaimeenMakavana/agent-vis"
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-full w-full items-center justify-center gap-2 rounded-[1px] bg-[var(--brand-surface-soft)]/90 pt-3.5 pb-3.5 pr-6 pl-6 text-center text-xs font-medium text-[var(--brand-border-strong)] backdrop-blur-sm transition-colors hover:text-[var(--foreground)]"
+                className="flex rounded-sm h-full w-full items-center justify-center gap-2 rounded-[1px] bg-[var(--brand-surface-soft)]/90 pt-3.5 pb-3.5 pr-6 pl-6 text-center text-xs font-medium text-[var(--brand-accent)] backdrop-blur-sm transition-colors hover:text-[var(--foreground)]"
               >
                 VIEW CODE
               </a>

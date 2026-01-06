@@ -10,6 +10,7 @@ import ReactFlow, {
   Position,
   useEdgesState,
   useNodesState,
+  Panel,
   type Node,
   type Edge,
   type NodeProps,
@@ -441,15 +442,36 @@ export default function KnowledgeGraphPage() {
                   color="var(--brand-grid-line)"
                 />
                 <Controls className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] shadow-sm" />
-                <MiniMap
-                  className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)]"
-                  nodeColor={(node) => {
-                    const config =
-                      ENTITY_TYPE_CONFIG[(node.data as EntityNodeData).type];
-                    return config.borderColor.replace("border-", "#");
-                  }}
-                  maskColor="rgba(0, 0, 0, 0.05)"
-                />
+                <Panel
+                  position="bottom-right"
+                  className="!bottom-4 !right-4 flex flex-col items-end gap-1"
+                >
+                  <MiniMap
+                    className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--foreground)]"
+                    style={{
+                      backgroundColor: "var(--foreground)",
+                    }}
+                    nodeColor={(node) => {
+                      const config =
+                        ENTITY_TYPE_CONFIG[(node.data as EntityNodeData).type];
+                      // Map Tailwind border color classes to hex values
+                      const colorMap: Record<string, string> = {
+                        "border-blue-300": "#3b82f6",
+                        "border-purple-300": "#8b5cf6",
+                        "border-emerald-300": "#10b981",
+                        "border-amber-300": "#f59e0b",
+                        "border-rose-300": "#ec4899",
+                      };
+                      return colorMap[config.borderColor] || "#6b7280";
+                    }}
+                    maskColor="rgba(0, 0, 0, 0.1)"
+                  />
+                  <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-2 py-1">
+                    <span className="font-mono text-[9px] uppercase tracking-wide text-[var(--foreground)]">
+                      React Flow
+                    </span>
+                  </div>
+                </Panel>
               </ReactFlow>
             </div>
           </div>

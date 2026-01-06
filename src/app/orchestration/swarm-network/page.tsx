@@ -534,19 +534,33 @@ export default function SwarmNetworkPage() {
                 color="var(--brand-grid-line)"
               />
               <Controls className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] shadow-sm" />
-              <MiniMap
-                className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--background)] shadow-sm"
-                nodeColor={(node: Node<AgentNodeData>) => {
-                  const config = AGENT_TYPE_CONFIG[node.data?.type || "worker"];
-                  const colorMap: Record<string, string> = {
-                    "bg-purple-50": "#f3e8ff",
-                    "bg-blue-50": "#dbeafe",
-                    "bg-emerald-50": "#d1fae5",
-                    "bg-amber-50": "#fef3c7",
-                  };
-                  return colorMap[config.color] || "#f3f4f6";
-                }}
-              />
+              <Panel
+                position="bottom-right"
+                className="!bottom-4 !right-4 flex flex-col items-end gap-1"
+              >
+                <MiniMap
+                  className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--foreground)] shadow-sm"
+                  style={{
+                    backgroundColor: "var(--foreground)",
+                  }}
+                  nodeColor={(node: Node<AgentNodeData>) => {
+                    const config = AGENT_TYPE_CONFIG[node.data?.type || "worker"];
+                    const colorMap: Record<string, string> = {
+                      "bg-purple-50": "#8b5cf6",
+                      "bg-blue-50": "#3b82f6",
+                      "bg-emerald-50": "#10b981",
+                      "bg-amber-50": "#f59e0b",
+                    };
+                    return colorMap[config.color] || "#6b7280";
+                  }}
+                  maskColor="rgba(0, 0, 0, 0.1)"
+                />
+                <div className="rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] px-2 py-1">
+                  <span className="font-mono text-[9px] uppercase tracking-wide text-[var(--foreground)]">
+                    React Flow
+                  </span>
+                </div>
+              </Panel>
 
               <Panel
                 position="top-right"

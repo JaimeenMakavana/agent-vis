@@ -17,7 +17,7 @@ export function OptimizationCalculator() {
   return (
     <section
       id="calculator"
-      className="relative z-10 border-b border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] py-16 sm:py-24"
+      className="relative z-10 border-b border-[var(--brand-border-subtle)]  py-16 sm:py-24"
     >
       <Container size="md">
         <div className="mb-10 text-center">
@@ -29,7 +29,7 @@ export function OptimizationCalculator() {
         </div>
 
         <div className="rounded-sm bg-linear-to-b from-[var(--brand-border-subtle)] to-[var(--brand-border-strong)] p-px shadow-sm">
-          <div className="flex flex-col rounded-[1px] bg-[var(--brand-surface-soft)] md:flex-row">
+          <div className="flex flex-col rounded-sm bg-[var(--brand-surface-soft)] md:flex-row">
             {/* Inputs */}
             <div className="w-full border-b border-[var(--brand-border-subtle)] p-6 sm:p-8 md:w-1/2 md:border-b-0 md:border-r">
               <div className="space-y-8">

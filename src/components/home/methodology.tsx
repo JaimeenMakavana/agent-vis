@@ -22,10 +22,7 @@ export function Methodology() {
   ];
 
   return (
-    <section
-      id="process"
-      className="relative z-10 bg-[var(--brand-surface-soft)] py-16 sm:py-24"
-    >
+    <section id="process" className="relative z-10 py-16 sm:py-24">
       <Container>
         <div className="mb-12 flex flex-col items-start justify-between gap-4 border-b border-[var(--brand-border-subtle)] pb-6 sm:mb-16 sm:gap-6 sm:pb-8 md:flex-row md:items-end">
           <SectionHeader

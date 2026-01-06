@@ -51,7 +51,7 @@ function IntegrationCard({
 }: IntegrationCardProps) {
   return (
     <div className="group relative h-full rounded-sm bg-linear-to-b from-[var(--brand-border-subtle)] via-[var(--brand-border-subtle)] to-[var(--brand-border-strong)] p-px transition-all.duration-300 hover:from-[var(--brand-border-strong)] hover:via-[var(--brand-muted)] hover:to-[var(--brand-border-strong)]">
-      <div className="relative z-10 flex h-full flex-col rounded-[1px] bg-[var(--brand-surface)] p-6 sm:p-8">
+      <div className="relative z-10 flex h-full flex-col rounded-sm bg-[var(--brand-surface)] p-6 sm:p-8">
         <div className="mb-4 flex items-start justify-between sm:mb-6">
           <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-[var(--brand-border-subtle)] bg-[var(--brand-surface-soft)] text-[var(--brand-blue)] shadow-sm">
             {icon}
